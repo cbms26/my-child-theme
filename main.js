@@ -17,3 +17,4 @@ if (slider) {
     slider.querySelector('.navi-next').click(); // Trigger the default next slide action
   });
 }
+
