@@ -19,9 +19,77 @@ header {
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-
 }
 
+/* Event Page */
+main{
+	margin-top: 0 !important;
+}
+
+.wp-block-group
+{    
+	padding-top: 5px !important;
+    padding-bottom: 0 !important;
+}
+
+.is-style-default-title{
+	font-family: Bebas Neue !important; 
+}
+
+/*registration form */
+
+form.wpcf7-form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.wpcf7-form-control {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.wpcf7-textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.wpcf7-submit {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.wpcf7-submit:hover {
+    background-color: #0056b3;
+}
+
+.wpcf7-spinner {
+    display: none;
+}
+
+
+/*footer section */
 footer {
     background-color: #53565A;
 }
