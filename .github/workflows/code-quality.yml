@@ -21,10 +21,13 @@ jobs:
       with:
         php-version: '8.0'
 
+    - name: Install PHPStan globally
+      run: curl -sS https://getcomposer.org/installer | php && php composer.phar global require phpstan/phpstan
+
     # Run PHPStan (Static Analysis)
     - name: Run PHPStan
-      run: phpstan analyse --level=2 ./wp-content/themes/your-child-theme
+      run: ~/.composer/vendor/bin/phpstan analyse --level=2 ./wp-content/themes/your-child-theme
 
     # Run PHPCS (Code Standards)
     - name: Run PHPCS
-      run: phpcs --standard=WordPress ./wp-content/themes/your-child-theme
+      run: vendor/bin/phpcs --standard=WordPress ./wp-content/themes/your-child-theme
