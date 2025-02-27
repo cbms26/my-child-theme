@@ -26,8 +26,8 @@ jobs:
 
     # Run PHPStan (Static Analysis)
     - name: Run PHPStan
-      run: ~/.composer/vendor/bin/phpstan analyse --level=2 ./wp-content/themes/your-child-theme
+      run: ~/.composer/vendor/bin/phpstan analyse --level=2 ./wp-content/themes/my-child-theme
 
     # Run PHPCS (Code Standards)
     - name: Run PHPCS
-      run: vendor/bin/phpcs --standard=WordPress ./wp-content/themes/your-child-theme
+      run: vendor/bin/phpcs --standard=WordPress ./wp-content/themes/my-child-theme
