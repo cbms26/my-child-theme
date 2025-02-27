@@ -1,57 +1,25 @@
-name: Deploy WordPress Child Theme
+name: WordPress Child Theme CI
 
 on:
   push:
-    branches:
-      - main      # The branch where you push your code for deployment
+    branches: [ "dev" ]
   pull_request:
-    branches:
-      - main      # The branch where pull requests are created
+    branches: [ "dev" ]
 
 permissions:
-  contents: write   # To push changes to the repo
-  pull-requests: write
+  contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.1'  # Define the PHP version
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.0' # Adjust to match your PHP version
 
-      # Install dependencies, Composer if needed
-      - name: Install Composer
-        run: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
-
-      # Optional: Run tests (PHP linting or unit tests, if set up)
-      # If you're using PHPUnit, uncomment and modify the following steps:
-      # - name: Run tests
-      #   run: composer run-script test
-
-      # Optional: Node.js setup (if you're using Node for build tasks, e.g., SCSS, minification, etc.)
-      # - name: Set up Node.js
-      #   uses: actions/setup-node@v3
-      #   with:
-      #     node-version: '16'
-
-      # Optional: Install Node.js dependencies (if applicable)
-      # - name: Install Node.js dependencies
-      #   run: npm install
-
-      # Deploy/Push the changes (to a live server or repository)
-      - name: Deploy changes to repo (Optional)
-        run: |
-          git config --global user.name "Ngawang Tenzin"
-          git config --global user.email "ngawang.tenzin1@my.jcu.edu.au"
-          git add .
-          git commit -m "Deploy WordPress child theme update"
-          git push origin main
+    - name: Lint PHP files
+      run: find . -name "*.php" -print0 | xargs -0 -n1 php -l
