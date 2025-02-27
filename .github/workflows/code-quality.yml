@@ -2,9 +2,9 @@ name: WordPress Child Theme Code Quality
 
 on:
   push:
-    branches: [ "dev" ]
+    branches: [ "dev", "ngawang" ]
   pull_request:
-    branches: [ "dev" ]
+    branches: [ "dev", "ngawang" ]
 
 permissions:
   contents: read
@@ -21,13 +21,12 @@ jobs:
       with:
         php-version: '8.0'
 
-    - name: Install PHPStan globally
-      run: curl -sS https://getcomposer.org/installer | php && php composer.phar global require phpstan/phpstan
+    - name: Install Dependencies
+      run: composer install
 
-    # Run PHPStan (Static Analysis)
+    # ✅ Make sure to use the correct path to your child theme
     - name: Run PHPStan
-      run: ~/.composer/vendor/bin/phpstan analyse --level=2 ./wp-content/themes/my-child-theme
+      run: vendor/bin/phpstan analyse --level=2 ./wp-content/themes/my-child-theme
 
-    # Run PHPCS (Code Standards)
     - name: Run PHPCS
       run: vendor/bin/phpcs --standard=WordPress ./wp-content/themes/my-child-theme
