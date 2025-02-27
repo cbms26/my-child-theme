@@ -3,7 +3,7 @@ const prevArrow = document.querySelector('.custom-prev-arrow');
 const nextArrow = document.querySelector('.custom-next-arrow');
 
 // Get the Smart Slider container by its ID (replace 'smartslider-1' with your slider's ID)
-const slider = document.querySelector('#n2-ss-3');
+const slider = document.querySelector('.jcubsb-members-slider');
 
 // Ensure the slider exists before adding event listeners
 if (slider) {
