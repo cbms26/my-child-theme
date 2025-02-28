@@ -23,17 +23,28 @@ header {
 }
 
 /*dorji css begins here*/
-/* side menu */
+/* side menu for about us*/
 
-.about-us-side-nav {
+.aboutus-sldiermenu {
     margin-left: 0;
     margin-right: 0;
     position: absolute;
     z-index: 999;
-    background: #000;
-    top: -100px;
-    left: -10px;
+    background: #0066CC;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    top: -480px;
+    left: -340px;
+    font-size: 20px; /* Smaller text size */
+    width: 350px; /* Set a fixed width */
+    height: 500px; /* Set a fixed height */
 }
+
+
+
+
+
+
 
 footer {
     background-color: #53565A;
