@@ -105,52 +105,63 @@ footer {
 }
 .events-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columns */
-    gap: 20px;
-    max-width: 1000px;
-    margin: auto;
+    grid-template-columns: repeat(3, 403px); /* EXACTLY 3 items per row */
+    gap: 38px; /* Controls the space between the event cards */
+    justify-content: center; /* Keeps the grid centered */
+    max-width: 1300px; /* Limits grid width to prevent excess spacing */
+    margin: 0 auto; /* Ensures grid is centered */
 }
 .event-item {
     position: relative;
-    height: 300px; /* Fixed height for consistency */
-    border: 1px solid #ddd;
-    background-size: cover;
-    background-position: center;
-    text-align: center;
-    padding: 15px;
+    width: 403px; /* Fixed width */
+    height: 581px; /* Fixed height */
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
     transition: transform 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     border-left: 11.3px solid #009681;
 }
 .event-item:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
-.event-content {
-    position: relative;
-    background: white;
-    padding: 15px;
-    width: auto;
-    height: -webkit-fill-available;
-    text-align: center;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    margin: auto;
-}
+
+/*Background image for event section*/
 .event-image {
-    width: 100%; /* Ensure full width within its container */
-    height: 200px !important; /* Fixed height */
-    object-fit: cover; /* Ensures image fills the area without distortion */
-    border-radius: 10px;
-    margin-bottom: 10px;
+    width: 100%;
+    height: 220px; /* Adjusted height to match your reference */
+    object-fit: cover; /* Prevents stretching & keeps images aligned */
+    border-radius: 10px 10px 0 0;
+    background-color: white; /* Ensures a clean background */
 }
+
+.event-content {
+    position: absolute;
+    bottom: 0;
+    left: 50%;  /* Center align */
+    transform: translateX(-50%); /* Ensures it stays centered */
+    width: 372px; /* Fixed width */
+    height: 317px; /* Fixed height */
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+    padding: 15px;
+    text-align: left;
+    box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
 .event-title {
     font-size: 18px;
     font-weight: bold;
-    margin-bottom: 10px;
+    color: #0073e6;
+    margin-bottom: 5px;
 }
 .event-date {
     font-size: 14px;
     color: #555;
+    font-weight: bold;
     margin-bottom: 10px;
 }
+
 .event-link {
     display: inline-block;
     margin-top: 10px;
@@ -162,4 +173,251 @@ footer {
 }
 .event-link:hover {
     background: #005bb5;
+}
+
+/* Mobile Styling for events section */
+@media (max-width: 768px) {
+
+}
+
+/*Contributor Karma W*/
+/* Event Page */
+main{
+	margin-top: 0 !important;
+}
+
+.wp-block-group
+{    
+	padding-top: 5px !important;
+    padding-bottom: 0 !important;
+}
+
+.is-style-default-title{
+	font-family: Bebas Neue !important; 
+}
+
+/*event header banner*/
+.h1_banner_header::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 50px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='%23ffffff'%3E%3Cpath d='M93.6 194.5c-9.4 9.4-9.4 24.6 0 33.9l149.4 149.4c9.4 9.4 24.6 9.4 33.9 0L418.4 228.5c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L256 323.1 127.5 194.5c-9.4-9.4-24.6-9.4-33.9 0z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 10px auto 0;
+}
+
+/*event section*/
+.event_section li, .news_section li{
+    transition: transform 0.3s ease;
+    text-decoration: none;
+    padding: 5px;
+}
+
+.event_section li:hover, .news_section li:hover {
+    background-color: #f2f2f2;
+    overflow: hidden;
+}
+
+.wp-block-latest-posts__featured-image img:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease-in-out;
+  }
+
+.wp-block-latest-posts__read-more {
+    display: inline-block;
+    text-decoration: none;
+    margin-top: auto; /* push it to bottom if you want */
+  }
+  
+  .wp-block-latest-posts__read-more:hover {
+    text-decoration: underline;
+  }
+  
+  /* Wrapper styling - centres the button and adds spacing */
+
+  /*register button*/
+#formWrapper .btn-primary {
+    background-color: #26A594 !important;     /* Bootstrap primary blue */
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    border: 0 !important;
+    border-radius: 0 !important;
+}
+
+#formWrapper .btn-primary::after {
+    content: " →"; /* Right arrow */
+    display: inline-block;
+    padding-left: 4px;
+}
+
+#formWrapper .btn-primary:hover{
+    color: #f2f2f2;
+}
+
+#formWrapper .btn-primary:hover::after {
+    transform: translateX(5px); /* Moves arrow slightly */
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Mobile tweaks */
+@media (max-width: 576px) {
+    #formWrapper .btn-primary {
+        padding: 10px 20px;
+        font-size: 12px;
+    }
+}
+
+  
+  /*testimonial */
+
+  /* General Styles for the Testimonial Slider */
+
+/* Styling the Testimonials */
+.wptww-testimonial-inner {
+    border: none !important;
+    padding: 5px !important;
+    text-align: center !important;
+    transition: all 0.3s ease-in-out !important;
+    border-left: 5px solid #26A594 !important;
+    background: #f2f2f2;
+}
+
+.wptww-testimonial-inner:hover {
+    transform: scale(1.0);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Testimonial Avatar */
+.wptww-testimonial_avatar {
+    border-radius: 50%;
+    margin: 0 auto 15px;
+}
+
+/* Author Name and Description */
+.wptww-testimonial-author {
+    font-size: 16px;
+    font-weight: bold;
+    color: #26A594;
+}
+
+.wptww-testimonial-inner:hover .wptww-testimonial-author {
+    color: #0073e6;
+}
+
+/* Testimonial Content */
+.wptww-testimonial-content h4{
+    text-align: center;
+}
+.wptww-testimonials-text p {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    color: #000;
+    font-style: italic;
+}
+
+/* Slick Slider Customizations */
+.wptww-testimonials-slidelist .slick-dots li button {
+    width: 12px !important;
+    height: 12px !important;
+    background-color: #fff !important;
+    border-radius: 50% !important;
+}
+
+.wptww-testimonials-slidelist .slick-dots li.slick-active button {
+    background-color: #26A594 !important;
+}
+
+/*registration form */
+
+/* Center the "Register Now" button */
+.register-btn-wrapper {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Modal form container */
+.modal-content {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+/* Modal form header*/
+.modal-header {
+    background-color: #1372B9;
+    border-radius: 0 !important;
+}
+.modal-title {
+    color: #fff !important;
+}
+
+/* Form labels */
+.modal-body label {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* Input fields */
+.modal-body input[type="text"],
+.modal-body input[type="email"],
+.modal-body input[type="tel"],
+.modal-body input[type="number"] {
+    width: 100%;
+    padding: 8px !important;
+    border: 1px solid #ced4da;
+}
+
+/* Checkbox */
+.form-check-label {
+    font-size: 0.875rem;
+    color: #555;
+}
+
+/* Submit button */
+.modal-body button[type="submit"] {
+    background-color: #26A594;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 0 !important;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.modal-body button[type="submit"]::after {
+    content: " →"; /* Right arrow */
+    display: inline-block;
+    padding-left: 4px;
+}
+
+.modal-body button[type="submit"]:hover::after {
+    transform: translateX(5px); /* Moves arrow slightly */
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Modal title */
+.modal-title {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Success message modal (if used) */
+#successModal .modal-content {
+    background-color: #d4edda;
+    color: #155724;
+    text-align: center;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 576px) {
+    .modal-dialog {
+        max-width: 95%;
+    }
 }
