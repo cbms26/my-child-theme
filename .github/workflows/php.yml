@@ -14,36 +14,49 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout Repository
       uses: actions/checkout@v4
 
-    - name: Verify Repository Structure
-      run: ls -R   # Debugging step to see if the expected folders exist
-
-    - name: Set up PHP 8.3
+    - name: Set Up PHP 8.3
       uses: shivammathur/setup-php@v2
       with:
         php-version: '8.3'
         extensions: mbstring, xml, dom, json, libxml, tokenizer, xmlwriter, xmlreader, mysqli
         tools: composer, phpunit
 
-    - name: Ensure theme directory exists
+    - name: Download and Set Up WordPress
       run: |
-        if [ ! -d "wp-content/themes/my-child-theme" ]; then
-          echo "❌ Theme directory does not exist!"
-          exit 1
-        fi
-      shell: bash
+        echo "📥 Downloading and Extracting WordPress..."
+        wget https://wordpress.org/latest.tar.gz
+        tar -xzf latest.tar.gz
+        mv wordpress/* .
+        rm -rf wordpress latest.tar.gz
+        echo "✅ WordPress Installed!"
 
-    - name: Install Composer dependencies
+    - name: Move Child Theme into WordPress
+      run: |
+        mkdir -p wp-content/themes/my-child-theme
+        cp -r * wp-content/themes/my-child-theme/
+        ls -R wp-content/themes/
+
+    - name: Create wp-config.php for Testing
+      run: |
+        cp wp-config-sample.php wp-config.php
+        sed -i "s/database_name_here/wordpress_test/" wp-config.php
+        sed -i "s/username_here/root/" wp-config.php
+        sed -i "s/password_here//" wp-config.php
+        sed -i "s/localhost/127.0.0.1/" wp-config.php
+        echo "✅ Configured wp-config.php!"
+
+    - name: Install Composer Dependencies
       working-directory: wp-content/themes/my-child-theme
       run: |
         composer install --no-interaction --prefer-dist || composer update --no-interaction --prefer-dist
 
-    - name: Set executable permissions for PHPUnit
+    - name: Set Executable Permissions for PHPUnit
       working-directory: wp-content/themes/my-child-theme
       run: chmod +x vendor/bin/phpunit
 
-    - name: Run PHPUnit tests
+    - name: Run PHPUnit Tests
       working-directory: wp-content/themes/my-child-theme
       run: ./vendor/bin/phpunit tests/ThemeFunctionsTest.php
