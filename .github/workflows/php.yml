@@ -20,15 +20,22 @@ jobs:
     - name: Set up PHP 8.3
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.3'  # Set PHP version to match your LocalWP (8.3.11)
+        php-version: '8.3'
         extensions: mbstring, xml, dom, json, libxml, tokenizer, xmlwriter, xmlreader, mysqli
         tools: composer, phpunit
 
     - name: Install Composer dependencies
-      run: composer install --no-interaction --prefer-dist
+      working-directory: wp-content/themes/my-child-theme # Change to your theme's directory
+      run: |
+        composer install --no-interaction --prefer-dist || composer update --no-interaction --prefer-dist
+
+    - name: Set executable permissions for PHPUnit
+      working-directory: wp-content/themes/my-child-theme
+      run: chmod +x vendor/bin/phpunit
 
     - name: Lint PHP files
       run: find . -name "*.php" -print0 | xargs -0 -n1 php -l
 
     - name: Run PHPUnit tests
-      run: vendor/bin/phpunit tests/ThemeFunctionsTest.php
+      working-directory: wp-content/themes/my-child-theme
+      run: ./vendor/bin/phpunit tests/ThemeFunctionsTest.php
