@@ -14,12 +14,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-    - name: Set up PHP
+    - name: Set up PHP 8.3
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.0' # Adjust to match your PHP version
+        php-version: '8.3'  # Set PHP version to match your LocalWP (8.3.11)
+        extensions: mbstring, xml, dom, json, libxml, tokenizer, xmlwriter, xmlreader, mysqli
+        tools: composer, phpunit
+
+    - name: Install Composer dependencies
+      run: composer install --no-interaction --prefer-dist || composer update --no-interaction --prefer-dist
 
     - name: Lint PHP files
       run: find . -name "*.php" -print0 | xargs -0 -n1 php -l
+
+    - name: Run PHPUnit tests
+      run: vendor/bin/phpunit tests/ThemeFunctionsTest.php
