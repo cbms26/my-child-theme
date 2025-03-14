@@ -33,11 +33,11 @@ jobs:
         rm -rf wordpress latest.tar.gz
         echo "✅ WordPress Installed!"
 
-    - name: Move Child Theme into WordPress
+    - name: Move Only Child Theme Files into WordPress
       run: |
         mkdir -p wp-content/themes/my-child-theme
-        cp -r * wp-content/themes/my-child-theme/
-        ls -R wp-content/themes/
+        rsync -av --progress ./ ./wp-content/themes/my-child-theme/ --exclude wp-content --exclude .git --exclude .github --exclude .gitignore --exclude composer.lock
+        echo "✅ Child Theme Moved Successfully!"
 
     - name: Create wp-config.php for Testing
       run: |
