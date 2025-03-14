@@ -86,35 +86,43 @@ footer {
     flex-direction: row-reverse;
     justify-content: space-between;
 }
+
 /* Target the Icon List widget in Elementor */
 .elementor-widget-icon-list ul li:not(:last-child) {
-    border-bottom: 1px solid #9e9e9e; /* Adds a black line below each item except the last one */
-    padding-bottom: 10px; /* Adds space between the text and the border */
-    margin-bottom: 10px; /* Adds space between list items */
+    border-bottom: 1px solid #9e9e9e;
+    /* Adds a black line below each item except the last one */
+    padding-bottom: 10px;
+    /* Adds space between the text and the border */
+    margin-bottom: 10px;
+    /* Adds space between list items */
 }
 
 /*Custom sorted Events css for home-page*/
 .events-section {
     margin-bottom: 40px;
 }
+
 .events-title {
     text-align: center;
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
 }
+
 .events-grid {
     display: grid;
-    grid-template-columns: repeat(3, 403px); /* EXACTLY 3 items per row */
-    gap: 38px; /* Controls the space between the event cards */
-    justify-content: center; /* Keeps the grid centered */
-    max-width: 1300px; /* Limits grid width to prevent excess spacing */
-    margin: 0 auto; /* Ensures grid is centered */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Dynamic grid */
+    gap: 30px; /* Controls spacing between events */
+    justify-content: center;
+    max-width: 90%; /* Adjust based on screen width */
+    margin: 0 auto; /* Center the grid */
 }
+
 .event-item {
     position: relative;
-    width: 403px; /* Fixed width */
-    height: 581px; /* Fixed height */
+    width: 100%; /* Allow dynamic resizing */
+    max-width: 403px; /* Prevents it from getting too large */
+    height: auto; /* Allow height to adjust dynamically */
     background: white;
     border-radius: 10px;
     overflow: hidden;
@@ -122,32 +130,36 @@ footer {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     border-left: 11.3px solid #009681;
 }
+
 .event-item:hover {
     transform: scale(1.02);
 }
 
-/*Background image for event section*/
+/* Background image for event section */
 .event-image {
     width: 100%;
-    height: 220px; /* Adjusted height to match your reference */
-    object-fit: cover; /* Prevents stretching & keeps images aligned */
+    height: 220px; /* Keep height fixed */
+    object-fit: cover;
     border-radius: 10px 10px 0 0;
-    background-color: white; /* Ensures a clean background */
+    background-color: white;
 }
 
+/* Updated event-content to resize properly */
 .event-content {
     position: absolute;
     bottom: 0;
-    left: 50%;  /* Center align */
-    transform: translateX(-50%); /* Ensures it stays centered */
-    width: 372px; /* Fixed width */
-    height: 317px; /* Fixed height */
-    background: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%; /* Make it responsive */
+    max-width: 372px; /* Keep original limit */
+    height: auto; /* Allow height to adjust dynamically */
+    background: rgba(255, 255, 255, 0.9);
     padding: 15px;
     text-align: left;
     box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 }
+
 
 .event-title {
     font-size: 18px;
@@ -155,6 +167,7 @@ footer {
     color: #0073e6;
     margin-bottom: 5px;
 }
+
 .event-date {
     font-size: 14px;
     color: #555;
@@ -171,29 +184,66 @@ footer {
     text-decoration: none;
     border-radius: 5px;
 }
+
 .event-link:hover {
     background: #005bb5;
 }
 
-/* Mobile Styling for events section */
-@media (max-width: 768px) {
-
+/* Tablet Styling for Events Section (Medium Screens) */
+@media (max-width: 1024px) {
+    
 }
+
+/* Mobile Styling for Events Section (Small Screens) */
+@media (max-width: 768px) {
+    .events-grid {
+        grid-template-columns: 1fr; /* Single column layout */
+        gap: 20px;
+    }
+
+    .event-item {
+        width: 90%;
+        max-width: 400px;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .event-content {
+        width: 90%;
+        max-width: 360px;
+        height: auto;
+        padding: 10px;
+    }
+
+    .event-title {
+        font-size: 16px;
+    }
+
+    .event-date {
+        font-size: 13px;
+    }
+
+    .event-link {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+}
+
+
 
 /*Contributor Karma W*/
 /* Event Page */
-main{
-	margin-top: 0 !important;
+main {
+    margin-top: 0 !important;
 }
 
-.wp-block-group
-{    
-	padding-top: 5px !important;
+.wp-block-group {
+    padding-top: 5px !important;
     padding-bottom: 0 !important;
 }
 
-.is-style-default-title{
-	font-family: Bebas Neue !important; 
+.is-style-default-title {
+    font-family: Bebas Neue !important;
 }
 
 /*event header banner*/
@@ -210,13 +260,15 @@ main{
 }
 
 /*event section*/
-.event_section li, .news_section li{
+.event_section li,
+.news_section li {
     transition: transform 0.3s ease;
     text-decoration: none;
     padding: 5px;
 }
 
-.event_section li:hover, .news_section li:hover {
+.event_section li:hover,
+.news_section li:hover {
     background-color: #f2f2f2;
     overflow: hidden;
 }
@@ -224,23 +276,25 @@ main{
 .wp-block-latest-posts__featured-image img:hover {
     transform: scale(1.02);
     transition: transform 0.3s ease-in-out;
-  }
+}
 
 .wp-block-latest-posts__read-more {
     display: inline-block;
     text-decoration: none;
-    margin-top: auto; /* push it to bottom if you want */
-  }
-  
-  .wp-block-latest-posts__read-more:hover {
-    text-decoration: underline;
-  }
-  
-  /* Wrapper styling - centres the button and adds spacing */
+    margin-top: auto;
+    /* push it to bottom if you want */
+}
 
-  /*register button*/
+.wp-block-latest-posts__read-more:hover {
+    text-decoration: underline;
+}
+
+/* Wrapper styling - centres the button and adds spacing */
+
+/*register button*/
 #formWrapper .btn-primary {
-    background-color: #26A594 !important;     /* Bootstrap primary blue */
+    background-color: #26A594 !important;
+    /* Bootstrap primary blue */
     padding: 12px 30px;
     font-size: 16px;
     font-weight: bold;
@@ -251,17 +305,19 @@ main{
 }
 
 #formWrapper .btn-primary::after {
-    content: " →"; /* Right arrow */
+    content: " →";
+    /* Right arrow */
     display: inline-block;
     padding-left: 4px;
 }
 
-#formWrapper .btn-primary:hover{
+#formWrapper .btn-primary:hover {
     color: #f2f2f2;
 }
 
 #formWrapper .btn-primary:hover::after {
-    transform: translateX(5px); /* Moves arrow slightly */
+    transform: translateX(5px);
+    /* Moves arrow slightly */
     transition: transform 0.3s ease-in-out;
 }
 
@@ -273,10 +329,10 @@ main{
     }
 }
 
-  
-  /*testimonial */
 
-  /* General Styles for the Testimonial Slider */
+/*testimonial */
+
+/* General Styles for the Testimonial Slider */
 
 /* Styling the Testimonials */
 .wptww-testimonial-inner {
@@ -311,9 +367,10 @@ main{
 }
 
 /* Testimonial Content */
-.wptww-testimonial-content h4{
+.wptww-testimonial-content h4 {
     text-align: center;
 }
+
 .wptww-testimonials-text p {
     font-size: 14px !important;
     line-height: 1.6 !important;
@@ -352,6 +409,7 @@ main{
     background-color: #1372B9;
     border-radius: 0 !important;
 }
+
 .modal-title {
     color: #fff !important;
 }
@@ -390,13 +448,15 @@ main{
 }
 
 .modal-body button[type="submit"]::after {
-    content: " →"; /* Right arrow */
+    content: " →";
+    /* Right arrow */
     display: inline-block;
     padding-left: 4px;
 }
 
 .modal-body button[type="submit"]:hover::after {
-    transform: translateX(5px); /* Moves arrow slightly */
+    transform: translateX(5px);
+    /* Moves arrow slightly */
     transition: transform 0.3s ease-in-out;
 }
 
