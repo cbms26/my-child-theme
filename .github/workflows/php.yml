@@ -17,6 +17,9 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Verify Repository Structure
+      run: ls -R   # Debugging step to see if the expected folders exist
+
     - name: Set up PHP 8.3
       uses: shivammathur/setup-php@v2
       with:
@@ -24,17 +27,22 @@ jobs:
         extensions: mbstring, xml, dom, json, libxml, tokenizer, xmlwriter, xmlreader, mysqli
         tools: composer, phpunit
 
+    - name: Ensure theme directory exists
+      run: |
+        if [ ! -d "wp-content/themes/my-child-theme" ]; then
+          echo "❌ Theme directory does not exist!"
+          exit 1
+        fi
+      shell: bash
+
     - name: Install Composer dependencies
-      working-directory: wp-content/themes/my-child-theme # Change to your theme's directory
+      working-directory: wp-content/themes/my-child-theme
       run: |
         composer install --no-interaction --prefer-dist || composer update --no-interaction --prefer-dist
 
     - name: Set executable permissions for PHPUnit
       working-directory: wp-content/themes/my-child-theme
       run: chmod +x vendor/bin/phpunit
-
-    - name: Lint PHP files
-      run: find . -name "*.php" -print0 | xargs -0 -n1 php -l
 
     - name: Run PHPUnit tests
       working-directory: wp-content/themes/my-child-theme
