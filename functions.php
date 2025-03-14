@@ -39,52 +39,111 @@ add_action('init', function() {
     }
 });
 
+
 // ✅ Shortcode: Display Sorted Events
 function display_sorted_events() {
     $current_date = current_time('Y-m-d');
-    ob_start(); // ✅ Buffer output to return correctly
+    ob_start(); // Start output buffering
 
-    // Query Upcoming Events
-    $upcoming_events = new WP_Query([
+    // Query for upcoming events
+    $upcoming_events = new WP_Query(array(
         'category_name'  => 'events',
         'posts_per_page' => 6,
         'meta_key'       => 'event_date',
         'orderby'        => 'meta_value',
         'order'          => 'ASC',
-        'meta_query'     => [[
-            'key'     => 'event_date',
-            'value'   => $current_date,
-            'compare' => '>='
-        ]]
-    ]);
+        'meta_query'     => array(
+            array(
+                'key'     => 'event_date',
+                'value'   => $current_date,
+                'compare' => '>='
+            )
+        )
+    ));
 
-    echo '<div class="events-section"><h2 class="events-title">Upcoming Events</h2><div class="events-grid">';
+    echo '<div class="events-section">';
+    echo '<h2 class="events-title">Upcoming Events</h2>';
+    echo '<div class="events-grid">';
     
     if ($upcoming_events->have_posts()) {
         while ($upcoming_events->have_posts()) {
             $upcoming_events->the_post();
             $event_date = get_field('event_date');
             $event_description = get_field('event_description');
-            $event_image = get_the_post_thumbnail_url(get_the_ID(), 'large');
+            $event_image = get_the_post_thumbnail_url(get_the_ID(), 'large'); // Get featured image
 
             echo '<div class="event-item">';
-            if ($event_image) echo '<img class="event-image" src="' . esc_url($event_image) . '" alt="' . esc_attr(get_the_title()) . '">';
-            echo '<div class="event-content">';
+            if ($event_image) {
+                echo '<img class="event-image" src="' . esc_url($event_image) . '" alt="' . esc_attr(get_the_title()) . '">';
+            }
+            echo '<div class="event-content">'; // White box inside
             echo '<div class="event-title">' . get_the_title() . '</div>';
             echo '<div class="event-date">Date: ' . esc_html($event_date) . '</div>';
             echo '<p class="event-description">' . esc_html($event_description) . '</p>';
+            echo '<p>' . get_the_excerpt() . '</p>';
             echo '<a href="' . get_permalink() . '" class="event-link">View Details</a>';
-            echo '</div></div>';
+            echo '</div>';
+            echo '</div>'; // End .event-item
         }
     } else {
         echo '<p style="text-align:center;">No upcoming events.</p>';
     }
 
-    echo '</div></div>'; // End Upcoming Events section
+    echo '</div>';
+    echo '</div>'; // End Upcoming Events section
 
     wp_reset_postdata();
 
-    return ob_get_clean(); // ✅ Return buffered output instead of echoing
+    // Query for past events
+    $past_events = new WP_Query(array(
+        'category_name'  => 'events',
+        'posts_per_page' => 6,
+        'meta_key'       => 'event_date',
+        'orderby'        => 'meta_value',
+        'order'          => 'DESC',
+        'meta_query'     => array(
+            array(
+                'key'     => 'event_date',
+                'value'   => $current_date,
+                'compare' => '<'
+            )
+        )
+    ));
+
+    echo '<div class="events-section">';
+    echo '<h2 class="events-title">Past Events</h2>';
+    echo '<div class="events-grid">';
+    
+    if ($past_events->have_posts()) {
+        while ($past_events->have_posts()) {
+            $past_events->the_post();
+            $event_date = get_field('event_date');
+            $event_description = get_field('event_description');
+            $event_image = get_the_post_thumbnail_url(get_the_ID(), 'large'); // Get featured image
+
+            echo '<div class="event-item">';
+            if ($event_image) {
+                echo '<img class="event-image" src="' . esc_url($event_image) . '" alt="' . esc_attr(get_the_title()) . '">';
+            }
+            echo '<div class="event-content">'; // White box inside
+            echo '<div class="event-title">' . get_the_title() . '</div>';
+            echo '<div class="event-date">Date: ' . esc_html($event_date) . '</div>';
+            echo '<p class="event-description">' . esc_html($event_description) . '</p>';
+            echo '<p>' . get_the_excerpt() . '</p>';
+            echo '<a href="' . get_permalink() . '" class="event-link">View Details</a>';
+            echo '</div>';
+            echo '</div>'; // End .event-item
+        }
+    } else {
+        echo '<p style="text-align:center;">No past events.</p>';
+    }
+
+    echo '</div>';
+    echo '</div>'; // End Past Events section
+
+    wp_reset_postdata();
+
+    return ob_get_clean(); // Return buffered output
 }
 add_shortcode('sorted_events', 'display_sorted_events');
 
