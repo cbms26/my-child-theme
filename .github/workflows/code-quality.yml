@@ -1,0 +1,28 @@
+name: WordPress Child Theme Code Quality
+
+on:
+  push:
+    branches: [ "dev", "ngawang" ]  # Runs CI on both branches
+  pull_request:
+    branches: [ "dev", "ngawang" ]
+
+permissions:
+  contents: read
+
+jobs:
+  code-quality:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.0'
+
+    - name: Run PHPStan
+      run: vendor/bin/phpstan analyse --level=2 ./wp-content/themes/my-child-theme
+
+    - name: Run PHPCS
+      run: vendor/bin/phpcs --standard=WordPress ./wp-content/themes/my-child-theme

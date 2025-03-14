@@ -17,10 +17,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Set up PHP
+    - name: Set up PHP 8.3
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.0' # Adjust as per your project's requirement
+        php-version: '8.3'  # Set PHP version to match your LocalWP (8.3.11)
         extensions: mbstring, xml, dom, json, libxml, tokenizer, xmlwriter, xmlreader, mysqli
         tools: composer, phpunit
 
