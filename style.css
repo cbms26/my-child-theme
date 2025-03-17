@@ -56,14 +56,181 @@ header {
 .wp-block-navigation__responsive-container {
     background: linear-gradient(180deg, #282725 70%, #868170 100%);
 }
-
 .wp-block-navigation__responsive-container-close {
     color: #FFF;
 }
-
 .wp-block-page-list {
     color: #FFF !important;
 }
+
+/* ================================
+   ✅ Fix for Fullscreen Menu Layout
+   ================================ */
+
+/* Force the navigation container to be full-width */
+.wp-block-navigation__responsive-container-content {
+    display: block !important; /* Remove column stacking */
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* Ensure the main menu container spans full width */
+.wp-block-navigation__container {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for desktop */
+    grid-auto-rows: auto;
+    gap: 30px;
+    max-width: 80%;
+    margin: auto;
+    text-align: center;
+    justify-content: center;
+}
+
+/* Ensure each main menu section (column) is aligned */
+.main-menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Main menu items */
+.main-menu-item > a {
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    padding-bottom: 8px;
+}
+
+/* Underline separator for main menu items */
+.main-menu-item > a::after {
+    content: "";
+    width: 50px;
+    height: 2px;
+    background: white;
+    display: block;
+    margin: 5px auto 0;
+}
+
+/* Submenus - Positioning Below Parent */
+.sub-menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    list-style: none;
+}
+
+/* Submenu items */
+.sub-menu-item a {
+    font-size: 16px;
+    color: #ded5c4;
+    text-decoration: none;
+    padding: 5px 0;
+    display: block;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Show submenus when the parent item is hovered */
+.wp-block-navigation-item.has-child:hover > .wp-block-navigation__submenu-container {
+    display: block;
+}
+
+/* Style submenu items */
+.wp-block-navigation__submenu-container a {
+    color: #FFF !important;
+    padding: 0;
+    display: block;
+}
+
+/* Ensure even spacing for menu rows */
+.wp-block-navigation__container > .main-menu-item {
+    padding-bottom: 20px;
+}
+
+/* ================================
+   ✅ Responsive Adjustments
+   ================================ */
+@media (max-width: 1024px) {
+    .wp-block-navigation__container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .wp-block-navigation__container {
+        grid-template-columns: repeat(1, 1fr); /* Single column for mobile */
+        gap: 20px;
+    }
+}
+
+/* =====================================
+   ✅ FIX: Prevent Restrictions from Parent Containers
+   ===================================== */
+
+/* Remove unwanted flex restrictions */
+.wp-block-navigation__responsive-container-content {
+    align-items: unset !important;
+    flex-direction: unset !important;
+    flex-wrap: unset !important;
+    overflow: visible !important;
+    padding-top: calc(2rem + 24px) !important;
+}
+
+/* ✅ Logo & Search Inside Modal */
+.menu-header-container {
+    text-align: center;
+    margin-bottom: 20px;
+    /* padding-top: 6px; */
+}
+
+/* ✅ Logo Styling */
+.menu-logo {
+    max-width: 300px;
+    height: 210.5px;
+    display: block;
+    margin: 0 auto 15px;
+}
+
+/* ✅ Search Bar */
+.menu-search form {
+    position: relative;
+    width: 720px;
+    max-width: 100%;
+    margin: auto;
+}
+
+/* ✅ Search Input */
+.menu-search input.search-field {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+
+/* ✅ Search Button */
+.menu-search button.search-submit {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #FFF;
+}
+
+/* ✅ Push Menu Items Lower */
+.wp-block-navigation__container {
+    margin-top: 50px;
+}
+
 
 footer {
     background-color: #53565A;

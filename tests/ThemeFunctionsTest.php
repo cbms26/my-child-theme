@@ -59,5 +59,65 @@ class ThemeFunctionsTest extends TestCase {
         $this->assertNotEmpty($output, 'Sorted events shortcode should not return empty output');
         $this->assertStringContainsString('<div class="events-section">', $output, 'Sorted events shortcode should output events section');
     }
+
+    public function test_inject_logo_and_search_script() {
+        // Trigger the function
+        do_action('wp_enqueue_scripts');
     
+        // Check if the script is registered
+        $this->assertTrue(wp_script_is('menu-custom-js', 'registered'), 'menu-custom-js should be registered');
+    
+        // Check if the script is enqueued
+        $this->assertTrue(wp_script_is('menu-custom-js', 'enqueued'), 'menu-custom-js should be enqueued');
+    
+        // Check if the script has the correct dependency (jQuery)
+        global $wp_scripts;
+        $script = $wp_scripts->registered['menu-custom-js'] ?? null;
+    
+        $this->assertNotNull($script, 'menu-custom-js should be registered');
+        $this->assertContains('jquery', $script->deps, 'menu-custom-js should depend on jQuery');
+        
+        // Ensure the path is correct
+        $expected_path = get_stylesheet_directory_uri() . '/assets/js/menu-custom.js';
+        $this->assertStringContainsString($expected_path, $script->src, 'menu-custom-js should have the correct file path');
+    }
+    
+    
+    // // 🟢 Test if form submission inserts student registration data
+    // public function test_student_registration_inserts_data() {
+    //     global $wpdb;
+    //     $table_name = $wpdb->prefix . 'student_registrations';
+
+    //     // Simulate $_POST data
+    //     $_SERVER['REQUEST_METHOD'] = 'POST';
+    //     $_POST = [
+    //         'student_registration_form' => '1',
+    //         'fullName' => 'Test Student',
+    //         'studentID' => '123456',
+    //         'studentMail' => 'test@student.com',
+    //         'studentPhone' => '123456789',
+    //         'studentDegree' => 'MIT',
+    //         'studentTrimester' => 'T1',
+    //         'consent' => '1'
+    //     ];
+
+    //     // Call the form submission function
+    //     handle_student_registration_form_submission();
+
+    //     // Fetch inserted data
+    //     $result = $wpdb->get_row("SELECT * FROM $table_name WHERE student_id = '123456'");
+
+    //     // Assertions
+    //     $this->assertNotNull($result, 'Student registration data should be inserted into the database');
+    //     $this->assertEquals('Test Student', $result->full_name, 'Full name should match');
+    //     $this->assertEquals('123456', $result->student_id, 'Student ID should match');
+    //     $this->assertEquals('test@student.com', $result->student_mail, 'Student email should match');
+    //     $this->assertEquals('123456789', $result->student_phone, 'Student phone should match');
+    //     $this->assertEquals('MIT', $result->student_degree, 'Student degree should match');
+    //     $this->assertEquals('T1', $result->student_trimester, 'Student trimester should match');
+    //     $this->assertEquals(1, $result->consent, 'Consent should be recorded as 1 (true)');
+
+    //     // Clean up after test
+    //     $wpdb->query("DELETE FROM $table_name WHERE student_id = '123456'");
+    // }
 }
