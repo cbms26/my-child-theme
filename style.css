@@ -35,10 +35,6 @@ Template: twentytwentyfive
 }
 
 /*Generic Page CSS*/
-body {
-    font-family: 'Arial', sans-serif;
-}
-
 header {
     /*header Style*/
     background: #FFF;
@@ -53,49 +49,124 @@ header {
     line-height: normal;
 }
 
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+/*Hide all page's title being shown on site using Additional Class, .page-title*/
+.page-title{
+    display: none;
+}
+
+
+
 .wp-block-navigation__responsive-container {
     background: linear-gradient(180deg, #282725 70%, #868170 100%);
 }
+
 .wp-block-navigation__responsive-container-close {
     color: #FFF;
 }
+
 .wp-block-page-list {
     color: #FFF !important;
 }
 
 /* ================================
-   ✅ Fix for Fullscreen Menu Layout
+   ✅ Center Logo & Search Bar
    ================================ */
 
-/* Force the navigation container to be full-width */
-.wp-block-navigation__responsive-container-content {
-    display: block !important; /* Remove column stacking */
-    width: 100% !important;
-    max-width: 100% !important;
-}
-
-/* Ensure the main menu container spans full width */
-.wp-block-navigation__container {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr); /* 3 columns for desktop */
-    grid-auto-rows: auto;
-    gap: 30px;
-    max-width: 80%;
-    margin: auto;
-    text-align: center;
-    justify-content: center;
-}
-
-/* Ensure each main menu section (column) is aligned */
-.main-menu-item {
+/* ✅ Center the Logo & Search Bar */
+.menu-header-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    margin-bottom: 30px; /* Space between search and menu */
 }
 
-/* Main menu items */
-.main-menu-item > a {
+/* ✅ Adjust Logo Size */
+.menu-logo {
+    max-width: 220px; /* Adjust size */
+    height: auto;
+    display: block;
+    margin: 0 auto 15px;
+}
+
+/* ✅ Center Search Box */
+.menu-search {
+    width: 100%;
+    max-width: 600px; /* Limit width */
+    display: flex;
+    justify-content: center;
+}
+
+/* ✅ Center Search Form */
+.menu-search form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: #f2f2f2;
+    padding: 8px 15px;
+    border-radius: 30px;
+}
+
+/* ✅ Search Input */
+.menu-search input.search-field {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    font-size: 16px;
+    background: white;
+    text-align: left;
+}
+
+/* ✅ Search Button */
+.menu-search button.search-submit {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #000;
+    margin-left: 10px;
+}
+
+/* ================================
+   ✅ Fullscreen Menu Layout Fixes
+   ================================ */
+
+/* Make sure the menu items are centered */
+.wp-block-navigation__container {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    width: 80%;
+    margin: 0 auto;
+    /* Center the menu */
+    text-align: center;
+    align-items: center;
+}
+
+/* ✅ Second Row: Align Menus to Center */
+.wp-block-navigation__container > .main-menu-item:nth-child(n+5) {
+    display: flex;
+    justify-content: center;
+}
+
+/* Ensure each main menu section (column) is aligned properly */
+.main-menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* ✅ Main Menu Items */
+.main-menu-item>a {
     font-size: 22px;
     font-weight: bold;
     color: white;
@@ -105,8 +176,8 @@ header {
     padding-bottom: 8px;
 }
 
-/* Underline separator for main menu items */
-.main-menu-item > a::after {
+/* ✅ Underline Separator for Main Menu Items */
+.main-menu-item>a::after {
     content: "";
     width: 50px;
     height: 2px;
@@ -115,7 +186,7 @@ header {
     margin: 5px auto 0;
 }
 
-/* Submenus - Positioning Below Parent */
+/* ✅ Submenus - Ensure consistent spacing */
 .sub-menu-item {
     display: flex;
     flex-direction: column;
@@ -124,7 +195,7 @@ header {
     list-style: none;
 }
 
-/* Submenu items */
+/* ✅ Submenu Items */
 .sub-menu-item a {
     font-size: 16px;
     color: #ded5c4;
@@ -134,20 +205,22 @@ header {
     transition: all 0.3s ease-in-out;
 }
 
-/* Show submenus when the parent item is hovered */
-.wp-block-navigation-item.has-child:hover > .wp-block-navigation__submenu-container {
-    display: block;
+/* ✅ Prevent Dropdown Behavior, Keep Submenus Fixed */
+.wp-block-navigation-item.has-child:hover>.wp-block-navigation__submenu-container {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Style submenu items */
+/* ✅ Style Submenu Items */
 .wp-block-navigation__submenu-container a {
     color: #FFF !important;
-    padding: 0;
+    padding: 5px 0;
     display: block;
 }
 
-/* Ensure even spacing for menu rows */
-.wp-block-navigation__container > .main-menu-item {
+/* ✅ Ensure even spacing for menu rows */
+.wp-block-navigation__container>.main-menu-item {
     padding-bottom: 20px;
 }
 
@@ -156,85 +229,91 @@ header {
    ================================ */
 @media (max-width: 1024px) {
     .wp-block-navigation__container {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns for medium screens */
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 columns for medium screens */
+        gap: 30px;
     }
 }
 
 @media (max-width: 768px) {
     .wp-block-navigation__container {
-        grid-template-columns: repeat(1, 1fr); /* Single column for mobile */
+        grid-template-columns: repeat(1, 1fr);
+        /* Single column for mobile */
         gap: 20px;
+        width: 90%;
+    }
+
+    .menu-logo {
+        max-width: 200px;
+        /* Adjust logo size for smaller screens */
+    }
+
+    .menu-search form {
+        width: 90%;
     }
 }
 
-/* =====================================
-   ✅ FIX: Prevent Restrictions from Parent Containers
-   ===================================== */
 
-/* Remove unwanted flex restrictions */
-.wp-block-navigation__responsive-container-content {
-    align-items: unset !important;
-    flex-direction: unset !important;
-    flex-wrap: unset !important;
-    overflow: visible !important;
-    padding-top: calc(2rem + 24px) !important;
-}
 
-/* ✅ Logo & Search Inside Modal */
-.menu-header-container {
-    text-align: center;
-    margin-bottom: 20px;
-    /* padding-top: 6px; */
-}
 
-/* ✅ Logo Styling */
-.menu-logo {
-    max-width: 300px;
-    height: 210.5px;
-    display: block;
-    margin: 0 auto 15px;
-}
 
-/* ✅ Search Bar */
-.menu-search form {
-    position: relative;
-    width: 720px;
-    max-width: 100%;
-    margin: auto;
-}
 
-/* ✅ Search Input */
-.menu-search input.search-field {
-    width: 100%;
-    padding: 10px 15px;
-    border-radius: 25px;
-    border: none;
-    outline: none;
-    font-size: 14px;
-}
 
-/* ✅ Search Button */
-.menu-search button.search-submit {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    color: #FFF;
-}
 
-/* ✅ Push Menu Items Lower */
-.wp-block-navigation__container {
-    margin-top: 50px;
-}
+
 
 
 footer {
     background-color: #53565A;
+    color: #FFF;
 }
+
+footer .wp-block-search__input  {
+    height: 40px;
+}
+
+footer .wp-block-search__button {
+    height: 40px;
+    padding: 5px 15px 5px 15px;
+}
+
+.footer-links p {
+    font-size: 12px;
+    margin: 0;
+    padding: .25rem 0;
+}
+
+.footer-links h4 {
+    /* font-family: "Open Sans",sans-serif; */
+    font-weight: 600;
+    padding: .3125rem 0 0;
+}
+
+.footer-ack-legal-info {
+    background-color: #f0f0f0;
+    color: #53565a;
+}
+
+/* Footer Copyright Text */
+.footer-copyright {
+    font-size: 11px;
+    color: #53565a; /* Subtle gray color */
+    text-align: center; /* Center align text */
+    padding: 10px 0; /* Top and bottom spacing */
+}
+
+/* Links inside the footer */
+.footer-copyright a {
+    color: #0078D4; /* Professional blue for links */
+    text-decoration: none; /* No underline */
+    margin: 0 5px; /* Spacing between links */
+}
+
+.footer-copyright a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+
 
 /* Tablet Styles (768px - 1024px) */
 @media (max-width: 1024px) {
@@ -278,18 +357,25 @@ footer {
 
 .events-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Dynamic grid */
-    gap: 30px; /* Controls spacing between events */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    /* Dynamic grid */
+    gap: 30px;
+    /* Controls spacing between events */
     justify-content: center;
-    max-width: 90%; /* Adjust based on screen width */
-    margin: 0 auto; /* Center the grid */
+    max-width: 90%;
+    /* Adjust based on screen width */
+    margin: 0 auto;
+    /* Center the grid */
 }
 
 .event-item {
     position: relative;
-    width: 100%; /* Allow dynamic resizing */
-    max-width: 403px; /* Prevents it from getting too large */
-    height: auto; /* Allow height to adjust dynamically */
+    width: 100%;
+    /* Allow dynamic resizing */
+    max-width: 403px;
+    /* Prevents it from getting too large */
+    height: auto;
+    /* Allow height to adjust dynamically */
     background: white;
     border-radius: 10px;
     overflow: hidden;
@@ -305,7 +391,8 @@ footer {
 /* Background image for event section */
 .event-image {
     width: 100%;
-    height: 220px; /* Keep height fixed */
+    height: 220px;
+    /* Keep height fixed */
     object-fit: cover;
     border-radius: 10px 10px 0 0;
     background-color: white;
@@ -317,9 +404,12 @@ footer {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 90%; /* Make it responsive */
-    max-width: 372px; /* Keep original limit */
-    height: auto; /* Allow height to adjust dynamically */
+    width: 90%;
+    /* Make it responsive */
+    max-width: 372px;
+    /* Keep original limit */
+    height: auto;
+    /* Allow height to adjust dynamically */
     background: rgba(255, 255, 255, 0.9);
     padding: 15px;
     text-align: left;
@@ -356,15 +446,11 @@ footer {
     background: #005bb5;
 }
 
-/* Tablet Styling for Events Section (Medium Screens) */
-@media (max-width: 1024px) {
-    
-}
-
-/* Mobile Styling for Events Section (Small Screens) */
+/* Mobile Styles (min - 768px) */
 @media (max-width: 768px) {
     .events-grid {
-        grid-template-columns: 1fr; /* Single column layout */
+        grid-template-columns: 1fr;
+        /* Single column layout */
         gap: 20px;
     }
 
@@ -394,257 +480,10 @@ footer {
         padding: 6px 10px;
         font-size: 14px;
     }
-}
 
 
-
-/*Contributor Karma W*/
-/* Event Page */
-main {
-    margin-top: 0 !important;
-}
-
-.wp-block-group {
-    padding-top: 5px !important;
-    padding-bottom: 0 !important;
-}
-
-.is-style-default-title {
-    font-family: Bebas Neue !important;
-}
-
-/*event header banner*/
-.h1_banner_header::after {
-    content: "";
-    display: block;
-    width: 50px;
-    height: 50px;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='%23ffffff'%3E%3Cpath d='M93.6 194.5c-9.4 9.4-9.4 24.6 0 33.9l149.4 149.4c9.4 9.4 24.6 9.4 33.9 0L418.4 228.5c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L256 323.1 127.5 194.5c-9.4-9.4-24.6-9.4-33.9 0z'/%3E%3C/svg%3E");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    margin: 10px auto 0;
-}
-
-/*event section*/
-.event_section li,
-.news_section li {
-    transition: transform 0.3s ease;
-    text-decoration: none;
-    padding: 5px;
-}
-
-.event_section li:hover,
-.news_section li:hover {
-    background-color: #f2f2f2;
-    overflow: hidden;
-}
-
-.wp-block-latest-posts__featured-image img:hover {
-    transform: scale(1.02);
-    transition: transform 0.3s ease-in-out;
-}
-
-.wp-block-latest-posts__read-more {
-    display: inline-block;
-    text-decoration: none;
-    margin-top: auto;
-    /* push it to bottom if you want */
-}
-
-.wp-block-latest-posts__read-more:hover {
-    text-decoration: underline;
-}
-
-/* Wrapper styling - centres the button and adds spacing */
-
-/*register button*/
-#formWrapper .btn-primary {
-    background-color: #26A594 !important;
-    /* Bootstrap primary blue */
-    padding: 12px 30px;
-    font-size: 16px;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-    border: 0 !important;
-    border-radius: 0 !important;
-}
-
-#formWrapper .btn-primary::after {
-    content: " →";
-    /* Right arrow */
-    display: inline-block;
-    padding-left: 4px;
-}
-
-#formWrapper .btn-primary:hover {
-    color: #f2f2f2;
-}
-
-#formWrapper .btn-primary:hover::after {
-    transform: translateX(5px);
-    /* Moves arrow slightly */
-    transition: transform 0.3s ease-in-out;
-}
-
-/* Mobile tweaks */
-@media (max-width: 576px) {
-    #formWrapper .btn-primary {
-        padding: 10px 20px;
-        font-size: 12px;
-    }
-}
-
-
-/*testimonial */
-
-/* General Styles for the Testimonial Slider */
-
-/* Styling the Testimonials */
-.wptww-testimonial-inner {
-    border: none !important;
-    padding: 5px !important;
-    text-align: center !important;
-    transition: all 0.3s ease-in-out !important;
-    border-left: 5px solid #26A594 !important;
-    background: #f2f2f2;
-}
-
-.wptww-testimonial-inner:hover {
-    transform: scale(1.0);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-/* Testimonial Avatar */
-.wptww-testimonial_avatar {
-    border-radius: 50%;
-    margin: 0 auto 15px;
-}
-
-/* Author Name and Description */
-.wptww-testimonial-author {
-    font-size: 16px;
-    font-weight: bold;
-    color: #26A594;
-}
-
-.wptww-testimonial-inner:hover .wptww-testimonial-author {
-    color: #0073e6;
-}
-
-/* Testimonial Content */
-.wptww-testimonial-content h4 {
-    text-align: center;
-}
-
-.wptww-testimonials-text p {
-    font-size: 14px !important;
-    line-height: 1.6 !important;
-    color: #000;
-    font-style: italic;
-}
-
-/* Slick Slider Customizations */
-.wptww-testimonials-slidelist .slick-dots li button {
-    width: 12px !important;
-    height: 12px !important;
-    background-color: #fff !important;
-    border-radius: 50% !important;
-}
-
-.wptww-testimonials-slidelist .slick-dots li.slick-active button {
-    background-color: #26A594 !important;
-}
-
-/*registration form */
-
-/* Center the "Register Now" button */
-.register-btn-wrapper {
-    text-align: center;
-    margin: 20px 0;
-}
-
-/* Modal form container */
-.modal-content {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-}
-
-/* Modal form header*/
-.modal-header {
-    background-color: #1372B9;
-    border-radius: 0 !important;
-}
-
-.modal-title {
-    color: #fff !important;
-}
-
-/* Form labels */
-.modal-body label {
-    font-weight: 600;
-    font-size: 14px;
-}
-
-/* Input fields */
-.modal-body input[type="text"],
-.modal-body input[type="email"],
-.modal-body input[type="tel"],
-.modal-body input[type="number"] {
-    width: 100%;
-    padding: 8px !important;
-    border: 1px solid #ced4da;
-}
-
-/* Checkbox */
-.form-check-label {
-    font-size: 0.875rem;
-    color: #555;
-}
-
-/* Submit button */
-.modal-body button[type="submit"] {
-    background-color: #26A594;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 0 !important;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.modal-body button[type="submit"]::after {
-    content: " →";
-    /* Right arrow */
-    display: inline-block;
-    padding-left: 4px;
-}
-
-.modal-body button[type="submit"]:hover::after {
-    transform: translateX(5px);
-    /* Moves arrow slightly */
-    transition: transform 0.3s ease-in-out;
-}
-
-/* Modal title */
-.modal-title {
-    font-weight: bold;
-    color: #333;
-}
-
-/* Success message modal (if used) */
-#successModal .modal-content {
-    background-color: #d4edda;
-    color: #155724;
-    text-align: center;
-    padding: 20px;
-    border-radius: 15px;
-}
-
-/* Responsive tweaks */
-@media (max-width: 576px) {
-    .modal-dialog {
-        max-width: 95%;
+    /*Mobile Footer*/
+    .footer-search-field {
+        display: none
     }
 }

@@ -22,6 +22,15 @@ document.addEventListener("DOMContentLoaded", function () {
         // ✅ Insert Above the Menu Items
         menuContainer.prepend(wrapper);
     }
-});
 
-console.log("✅ menu-custom.js is loaded successfully!"); 
+    // ✅ Disable dropdown behavior on main menu items
+    let menuItems = document.querySelectorAll(".main-menu-item.has-child > a");
+
+    menuItems.forEach(function (menuItem) {
+        menuItem.addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent default dropdown behavior
+        });
+    });
+
+    console.log("✅ menu-custom.js is loaded successfully!");
+});

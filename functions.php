@@ -162,6 +162,29 @@ function display_sorted_events() {
 }
 add_shortcode('sorted_events', 'display_sorted_events');
 
+
+//Disbale auto dropdown option on main menu
+function disable_wp_block_navigation_dropdown() {
+    ?>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let menuItems = document.querySelectorAll(".wp-block-navigation-item.has-child > a");
+
+            menuItems.forEach(function (menuItem) {
+                menuItem.removeAttribute("aria-haspopup"); // Remove accessibility toggle
+                menuItem.removeAttribute("aria-expanded"); // Prevent dropdown expansion
+                menuItem.parentElement.classList.remove("has-child"); // Disable default dropdown class
+            });
+
+            console.log("WordPress block navigation dropdown disabled.");
+        });
+    </script>
+    <?php
+}
+add_action('wp_footer', 'disable_wp_block_navigation_dropdown');
+
+
+//KW Contributor
 // Handle form submission
 add_action('init', 'handle_student_registration_form_submission');
 
