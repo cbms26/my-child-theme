@@ -11,3 +11,13 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+
+document.addEventListener("scroll", function() {
+    const header = document.querySelector("header");
+    if (window.scrollY > 50) {
+        header.classList.add("header-scrolled"); // Smooth expand when scrolling
+    } else {
+        header.classList.remove("header-scrolled"); // Return to default height
+    }
+});
+

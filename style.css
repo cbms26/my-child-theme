@@ -33,14 +33,16 @@ Template: twentytwentyfive
     display: flex;
     gap: 23px;
 }
-
-/*Generic Page CSS*/
+/* Generic Page CSS */
 header {
-    /*header Style*/
+    /* Header Style */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     background: #FFF;
     box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.25);
-
-    /*Typography*/
+                
+    /* Typography */
     color: #53565A;
     font-family: "Open Sans";
     font-size: 13px;
@@ -49,12 +51,26 @@ header {
     line-height: normal;
 }
 
+/* Make it translucent when scrolling */
+.header-scrolled {
+    background: rgba(255, 255, 255, 0.85); /* 85% opacity */
+    backdrop-filter: blur(10px); /* Adds blur for better visibility */
+}
+
+
+.header-location-social-links-group {
+    position: absolute;
+    top: 25px;
+    right: 250px;
+}
+
+
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: "Open Sans";
 }
 
 /*Hide all page's title being shown on site using Additional Class, .page-title*/
-.page-title{
+.page-title {
     display: none;
 }
 
@@ -83,12 +99,14 @@ body {
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin-bottom: 30px; /* Space between search and menu */
+    margin-bottom: 30px;
+    /* Space between search and menu */
 }
 
 /* ✅ Adjust Logo Size */
 .menu-logo {
-    max-width: 220px; /* Adjust size */
+    max-width: 220px;
+    /* Adjust size */
     height: auto;
     display: block;
     margin: 0 auto 15px;
@@ -97,7 +115,8 @@ body {
 /* ✅ Center Search Box */
 .menu-search {
     width: 100%;
-    max-width: 600px; /* Limit width */
+    max-width: 600px;
+    /* Limit width */
     display: flex;
     justify-content: center;
 }
@@ -152,7 +171,7 @@ body {
 }
 
 /* ✅ Second Row: Align Menus to Center */
-.wp-block-navigation__container > .main-menu-item:nth-child(n+5) {
+.wp-block-navigation__container>.main-menu-item:nth-child(n+5) {
     display: flex;
     justify-content: center;
 }
@@ -268,7 +287,7 @@ footer {
     color: #FFF;
 }
 
-footer .wp-block-search__input  {
+footer .wp-block-search__input {
     height: 40px;
 }
 
@@ -297,28 +316,40 @@ footer .wp-block-search__button {
 /* Footer Copyright Text */
 .footer-copyright {
     font-size: 11px;
-    color: #53565a; /* Subtle gray color */
-    text-align: center; /* Center align text */
-    padding: 10px 0; /* Top and bottom spacing */
+    color: #53565a;
+    /* Subtle gray color */
+    text-align: center;
+    /* Center align text */
+    padding: 10px 0;
+    /* Top and bottom spacing */
 }
 
 /* Links inside the footer */
 .footer-copyright a {
-    color: #0078D4; /* Professional blue for links */
-    text-decoration: none; /* No underline */
-    margin: 0 5px; /* Spacing between links */
+    color: #0078D4;
+    /* Professional blue for links */
+    text-decoration: none;
+    /* No underline */
+    margin: 0 5px;
+    /* Spacing between links */
 }
 
 .footer-copyright a:hover {
-    text-decoration: underline; /* Underline on hover */
+    text-decoration: underline;
+    /* Underline on hover */
 }
 
 
 
 /* Tablet Styles (768px - 1024px) */
 @media (max-width: 1024px) {
+    /*Header*/
     header {
         padding: 15px;
+    }
+
+    .header-location-social-links-group{
+        right: 10px;
     }
 
     .header-jcub-location-address {
@@ -448,6 +479,33 @@ footer .wp-block-search__button {
 
 /* Mobile Styles (min - 768px) */
 @media (max-width: 768px) {
+
+    /*Mobile View Header*/
+.header-location-social-links-group{
+    right: 10px;
+}
+    .header-location {
+        display: none;
+    }
+
+    .header-email-address {
+        display: none;
+    }
+
+    .header-social-links {
+        display: flex;
+        flex-direction: column;
+        /* Aligns items vertically */
+        gap: 10px;
+        /* Adjust space between icons */
+        align-items: center;
+        /* Centers icons horizontally */
+    }
+
+    .header-social-links a {
+        display: inline-block;
+    }
+
     .events-grid {
         grid-template-columns: 1fr;
         /* Single column layout */
