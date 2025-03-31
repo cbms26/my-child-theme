@@ -3,11 +3,40 @@ Theme Name: JCUBSB Child Theme
 Template: twentytwentyfive
 */
 
+/* Fixing Nav Bug */
+.wp-block-navigation.items-justified-right {
+    --navigation-layout-justification-setting: top;
+    --navigation-layout-justify: top;
+}
 
-/*WP css*/
+.wp-block-navigation__responsive-dialog {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
 
+.nav-menu {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 60px !important;
+}
+
+.nav-menu a:hover {
+    text-decoration: underline;
+}
+
+.wp-block-navigation__container>.main-menu-item:nth-child(n+5) {
+    display: block !important;
+    justify-content: none !important;
+}
+
+.wp-block-navigation__submenu-container {
+    border: none !important;
+}
+
+/* WP Core Elements */
 .wp-block-post-title {
-    /*display: none;*/
+    /* display: none; */
 }
 
 .wp-block-group {
@@ -33,16 +62,14 @@ Template: twentytwentyfive
     display: flex;
     gap: 23px;
 }
+
 /* Generic Page CSS */
-header {
-    /* Header Style */
+.main-header {
     position: sticky;
     top: 0;
     z-index: 1000;
     background: #FFF;
     box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.25);
-                
-    /* Typography */
     color: #53565A;
     font-family: "Open Sans";
     font-size: 13px;
@@ -51,31 +78,38 @@ header {
     line-height: normal;
 }
 
-/* Make it translucent when scrolling */
 .header-scrolled {
-    background: rgba(255, 255, 255, 0.85); /* 85% opacity */
-    backdrop-filter: blur(10px); /* Adds blur for better visibility */
+    background: #afb0b3;
+    backdrop-filter: blur(10px);
 }
 
+.header-scrolled .header-location,
+.header-scrolled .header-email-address,
+.header-scrolled nav {
+  color: white;
+}
 
 .header-location-social-links-group {
     position: absolute;
     top: 25px;
-    right: 250px;
+    right: 150px;
 }
 
-
-body {
-    font-family: "Open Sans";
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Open Sans", sans-serif;
 }
 
-/*Hide all page's title being shown on site using Additional Class, .page-title*/
 .page-title {
     display: none;
 }
 
-
-
+/* Responsive Navigation Container */
 .wp-block-navigation__responsive-container {
     background: linear-gradient(180deg, #282725 70%, #868170 100%);
 }
@@ -88,40 +122,34 @@ body {
     color: #FFF !important;
 }
 
-/* ================================
-   ✅ Center Logo & Search Bar
-   ================================ */
 
-/* ✅ Center the Logo & Search Bar */
+
+/* ================================
+   Center Logo & Search Bar
+================================== */
 .menu-header-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin-bottom: 30px;
-    /* Space between search and menu */
+    margin-bottom: 0px;
 }
 
-/* ✅ Adjust Logo Size */
 .menu-logo {
     max-width: 220px;
-    /* Adjust size */
     height: auto;
     display: block;
-    margin: 0 auto 15px;
+    margin: 0 auto 0px;
 }
 
-/* ✅ Center Search Box */
 .menu-search {
     width: 100%;
     max-width: 600px;
-    /* Limit width */
     display: flex;
     justify-content: center;
 }
 
-/* ✅ Center Search Form */
 .menu-search form {
     display: flex;
     align-items: center;
@@ -132,7 +160,6 @@ body {
     border-radius: 30px;
 }
 
-/* ✅ Search Input */
 .menu-search input.search-field {
     flex-grow: 1;
     padding: 10px;
@@ -144,7 +171,6 @@ body {
     text-align: left;
 }
 
-/* ✅ Search Button */
 .menu-search button.search-submit {
     background: transparent;
     border: none;
@@ -155,28 +181,23 @@ body {
 }
 
 /* ================================
-   ✅ Fullscreen Menu Layout Fixes
-   ================================ */
-
-/* Make sure the menu items are centered */
+   Fullscreen Menu Layout Fixes
+================================== */
 .wp-block-navigation__container {
     display: grid !important;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
-    /* Center the menu */
     text-align: center;
     align-items: center;
 }
 
-/* ✅ Second Row: Align Menus to Center */
 .wp-block-navigation__container>.main-menu-item:nth-child(n+5) {
     display: flex;
     justify-content: center;
 }
 
-/* Ensure each main menu section (column) is aligned properly */
 .main-menu-item {
     display: flex;
     flex-direction: column;
@@ -184,7 +205,6 @@ body {
     text-align: center;
 }
 
-/* ✅ Main Menu Items */
 .main-menu-item>a {
     font-size: 22px;
     font-weight: bold;
@@ -195,7 +215,6 @@ body {
     padding-bottom: 8px;
 }
 
-/* ✅ Underline Separator for Main Menu Items */
 .main-menu-item>a::after {
     content: "";
     width: 50px;
@@ -205,7 +224,6 @@ body {
     margin: 5px auto 0;
 }
 
-/* ✅ Submenus - Ensure consistent spacing */
 .sub-menu-item {
     display: flex;
     flex-direction: column;
@@ -214,7 +232,6 @@ body {
     list-style: none;
 }
 
-/* ✅ Submenu Items */
 .sub-menu-item a {
     font-size: 16px;
     color: #ded5c4;
@@ -224,76 +241,169 @@ body {
     transition: all 0.3s ease-in-out;
 }
 
-/* ✅ Prevent Dropdown Behavior, Keep Submenus Fixed */
 .wp-block-navigation-item.has-child:hover>.wp-block-navigation__submenu-container {
     display: flex !important;
     flex-direction: column;
     align-items: center;
 }
 
-/* ✅ Style Submenu Items */
 .wp-block-navigation__submenu-container a {
     color: #FFF !important;
     padding: 5px 0;
     display: block;
 }
 
-/* ✅ Ensure even spacing for menu rows */
 .wp-block-navigation__container>.main-menu-item {
     padding-bottom: 20px;
 }
 
 /* ================================
-   ✅ Responsive Adjustments
-   ================================ */
+  Breadcrumb NavXT - Header Aligned
+================================== */
+.breadcrumbs {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+    padding-left: var(--wp--style--root--padding-left); /* Match site's global left padding */
+  }
+  
+  .breadcrumbs a {
+    color: #0073aa;
+    text-decoration: none;
+  }
+  
+  .breadcrumbs a:hover {
+    text-decoration: underline;
+  }
+  
+  
+
+/* ================================
+   Responsive Adjustments
+================================== */
 @media (max-width: 1024px) {
     .wp-block-navigation__container {
         grid-template-columns: repeat(2, 1fr);
-        /* 2 columns for medium screens */
         gap: 30px;
+    }
+
+    header {
+        padding: 15px;
+    }
+
+    .header-location-social-links-group {
+        right: 10px;
+    }
+
+    .header-jcub-location-address {
+        font-size: 12px;
     }
 }
 
 @media (max-width: 768px) {
     .wp-block-navigation__container {
         grid-template-columns: repeat(1, 1fr);
-        /* Single column for mobile */
         gap: 20px;
         width: 90%;
     }
 
     .menu-logo {
         max-width: 200px;
-        /* Adjust logo size for smaller screens */
     }
 
     .menu-search form {
         width: 90%;
     }
+
+    .header-location-social-links-group {
+        right: 10px;
+        top: 5px;
+    }
+
+    .header-location,
+    .header-email-address {
+        display: none;
+    }
+
+    .header-social-links {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .header-social-links a {
+        display: inline-block;
+    }
+
+    .home-current-student-board-member-heading h4 {
+        font-size: 20px !important;
+    }
+
+    .events-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .event-item {
+        width: 90%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .event-content {
+        width: 90%;
+        max-width: 360px;
+        padding: 10px;
+    }
+
+    .event-title {
+        font-size: 16px;
+    }
+
+    .event-date {
+        font-size: 13px;
+    }
+
+    .event-link {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+
+    .fullwidth-past-events {
+        padding: 0 2%;
+    }
+
+    .footer-search-field {
+        display: none;
+    }
 }
 
-
-
-
-
-
-
-
-
-
-
+/* ================================
+   Footer Styles
+================================== */
 footer {
     background-color: #53565A;
     color: #FFF;
 }
 
-footer .wp-block-search__input {
+footer a {
+    color: #FFF;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: rgb(251, 134, 0);
+    text-decoration: underline;
+}
+
+footer .wp-block-search__input,
+footer .wp-block-search__button {
     height: 40px;
 }
 
 footer .wp-block-search__button {
-    height: 40px;
-    padding: 5px 15px 5px 15px;
+    padding: 5px 15px;
 }
 
 .footer-links p {
@@ -303,7 +413,6 @@ footer .wp-block-search__button {
 }
 
 .footer-links h4 {
-    /* font-family: "Open Sans",sans-serif; */
     font-weight: 600;
     padding: .3125rem 0 0;
 }
@@ -313,68 +422,46 @@ footer .wp-block-search__button {
     color: #53565a;
 }
 
-/* Footer Copyright Text */
 .footer-copyright {
     font-size: 11px;
     color: #53565a;
-    /* Subtle gray color */
     text-align: center;
-    /* Center align text */
     padding: 10px 0;
-    /* Top and bottom spacing */
 }
 
-/* Links inside the footer */
 .footer-copyright a {
-    color: #0078D4;
-    /* Professional blue for links */
+    color: #fff;
     text-decoration: none;
-    /* No underline */
     margin: 0 5px;
-    /* Spacing between links */
 }
 
 .footer-copyright a:hover {
     text-decoration: underline;
-    /* Underline on hover */
 }
 
-
-
-/* Tablet Styles (768px - 1024px) */
-@media (max-width: 1024px) {
-    /*Header*/
-    header {
-        padding: 15px;
-    }
-
-    .header-location-social-links-group{
-        right: 10px;
-    }
-
-    .header-jcub-location-address {
-        font-size: 12px;
-    }
-}
-
-/*Elementor Page styling*/
-.elementor-icon-list-item {
+/* ================================
+   Elementor Styling
+================================== */
+.elementor-icon-list-item a {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
 }
 
-/* Target the Icon List widget in Elementor */
-.elementor-widget-icon-list ul li:not(:last-child) {
-    border-bottom: 1px solid #9e9e9e;
-    /* Adds a black line below each item except the last one */
-    padding-bottom: 10px;
-    /* Adds space between the text and the border */
-    margin-bottom: 10px;
-    /* Adds space between list items */
+.elementor-icon-list-item a:hover {
+    text-decoration: underline;
+    color: #FFF;
 }
 
-/*Custom sorted Events css for home-page*/
+.elementor-widget-icon-list ul li:not(:last-child) {
+    border-bottom: 1px solid #9e9e9e;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+/* ================================
+   Custom Sorted Events (Homepage)
+================================== */
 .events-section {
     margin-bottom: 40px;
 }
@@ -388,25 +475,18 @@ footer .wp-block-search__button {
 
 .events-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    /* Dynamic grid */
-    gap: 30px;
-    /* Controls spacing between events */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
     justify-content: center;
-    max-width: 90%;
-    /* Adjust based on screen width */
+    max-width: 100%;
     margin: 0 auto;
-    /* Center the grid */
 }
 
 .event-item {
     position: relative;
     width: 100%;
-    /* Allow dynamic resizing */
     max-width: 403px;
-    /* Prevents it from getting too large */
     height: auto;
-    /* Allow height to adjust dynamically */
     background: white;
     border-radius: 10px;
     overflow: hidden;
@@ -419,35 +499,27 @@ footer .wp-block-search__button {
     transform: scale(1.02);
 }
 
-/* Background image for event section */
 .event-image {
     width: 100%;
     height: 220px;
-    /* Keep height fixed */
     object-fit: cover;
     border-radius: 10px 10px 0 0;
     background-color: white;
 }
 
-/* Updated event-content to resize properly */
 .event-content {
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
-    /* Make it responsive */
     max-width: 372px;
-    /* Keep original limit */
-    height: auto;
-    /* Allow height to adjust dynamically */
     background: rgba(255, 255, 255, 0.9);
     padding: 15px;
     text-align: left;
     box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 }
-
 
 .event-title {
     font-size: 18px;
@@ -477,71 +549,894 @@ footer .wp-block-search__button {
     background: #005bb5;
 }
 
-/* Mobile Styles (min - 768px) */
-@media (max-width: 768px) {
-
-    /*Mobile View Header*/
-.header-location-social-links-group{
-    right: 10px;
+/* Split Layout: Left Grid & Right List */
+.events-split-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: space-between;
+    max-width: 100%;
+    margin: 0 auto;
 }
-    .header-location {
-        display: none;
+
+.left-events {
+    flex: 1 1 60%;
+    min-width: 320px;
+}
+
+.right-events {
+    flex: 1 1 35%;
+    min-width: 280px;
+}
+
+.fullwidth-past-events {
+    max-width: 100%;
+    padding: 0 5%;
+    margin-top: 60px;
+}
+
+.events-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.event-list-item {
+    background: #f9f9f9;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-left: 5px solid #0073e6;
+    border-radius: 8px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.event-list-item strong {
+    font-size: 16px;
+    color: #0073e6;
+}
+
+.event-list-item span {
+    font-size: 14px;
+    color: #555;
+}
+
+.event-list-item .event-link {
+    margin-left: 10px;
+    font-size: 13px;
+    padding: 5px 10px;
+}
+
+.fullwidth-past-events ul li strong:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.fullwidth-past-events ul li:hover {
+    transform: scale(1.02);
+}
+
+.elementor-shortcode a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* ================================
+   Event Single Page Template
+================================== */
+.wp-block-columns {
+    margin: 0px;
+}
+
+.tribe-block {
+    z-index: 0 !important;
+}
+
+.tribe-events-pg-template {
+    padding: 0 !important;
+}
+
+.epta-all-events a {
+    display: flex;
+    width: 20%;
+    align-items: center;
+    font-size: 16px;
+    text-decoration: none;
+    color: #fff !important;
+    padding: 10px 15px;
+    background-color: #26A594;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.epta-all-events a::before {
+    content: "\1F4C5";
+    font-size: 18px;
+    margin-right: 8px;
+}
+
+.epta-all-events a:hover {
+    background-color: #1372B9;
+}
+
+.epta-countdown-timer,
+.epta-addto-calendar {
+    display: none;
+}
+
+/* ================================
+   Event Banner & Header Title
+================================== */
+.header_main_title_div {
+    position: absolute;
+    left: 100px;
+    width: 50%;
+}
+
+/*.wp-block-post-featured-image {
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 10% 100%);
+}*/
+
+.header_title_div {
+    left: 30%;
+    width: 40%;
+    padding: 20px !important;
+    text-align: center;
+    background: #26A594;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+}
+
+.header_title_div h2 {
+    text-transform: uppercase !important;
+    letter-spacing: 5px !important;
+    color: #fff;
+    font-weight: bold;
+}
+
+.header_title_div::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -20px;
+    transform: translateY(-50%);
+    border-left: 20px solid #26A594;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+}
+
+/* Responsive Banner & Title */
+@media screen and (max-width: 1024px) {
+    .header_title_div {
+        width: 50%;
+        top: 25%;
+        left: 5%;
     }
 
-    .header-email-address {
-        display: none;
+    .wp-block-post-featured-image {
+        height: 250px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header_title_div {
+        width: 100%;
+        font-size: 18px;
+        padding: 15px;
     }
 
-    .header-social-links {
-        display: flex;
-        flex-direction: column;
-        /* Aligns items vertically */
-        gap: 10px;
-        /* Adjust space between icons */
-        align-items: center;
-        /* Centers icons horizontally */
+    .header_title_div::after {
+        right: -15px;
+        border-left: 15px solid #1d5d54;
+        border-top: 15px solid transparent;
+        border-bottom: 15px solid transparent;
     }
 
-    .header-social-links a {
-        display: inline-block;
+    .wp-block-post-featured-image {
+        height: 220px;
     }
 
-    .events-grid {
-        grid-template-columns: 1fr;
-        /* Single column layout */
-        gap: 20px;
+    .tribe-events-back a {
+        width: 100%;
+        font-size: 14px;
     }
+}
 
-    .event-item {
-        width: 90%;
-        max-width: 400px;
-        height: auto;
-        margin: 0 auto;
-    }
-
-    .event-content {
-        width: 90%;
-        max-width: 360px;
-        height: auto;
+@media screen and (max-width: 480px) {
+    .header_title_div {
+        width: 80%;
+        left: 10%;
+        font-size: 16px;
         padding: 10px;
     }
 
-    .event-title {
+    .header_title_div::after {
+        right: -10px;
+        border-left: 10px solid #1d5d54;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+    }
+
+    .wp-block-post-featured-image {
+        height: 180px;
+    }
+
+    .tribe-events-back a {
+        width: 100%;
+        font-size: 12px;
+        padding: 8px;
+    }
+}
+
+/* ================================
+   DW Contributor on About Us Page
+================================== */
+.menu {
+    width: 400px;
+    height: 520px;
+    margin-left: 0;
+    margin-right: 0;
+    position: absolute;
+    z-index: 999;
+    background: #0066CC;
+    padding: 20px 30px;
+    top: -490px;
+    left: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #ccc;
+    text-decoration: none;
+}
+
+.arrow {
+    margin-left: 10px;
+    background: none;
+}
+
+
+
+/*kw css code */
+/* General Styling */
+/*event single page template*/
+.wp-block-columns {
+    margin: 0px;
+}
+
+.tribe-block {
+    z-index: 0 !important;
+
+}
+
+/*main event design */
+.tribe-events-pg-template {
+    padding: 0 !important;
+}
+
+
+/* Event Header Banner */
+.header_main_banner_div {
+    background: none;
+}
+
+.header_main_title_div {
+    position: relative;
+}
+
+/*event calendar button */
+.event_calendar_btn a {
+    text-decoration: underline;
+    outline: none !important;
+    /* Removes the focus outline */
+    border: none !important;
+    /* Removes any border */
+    box-shadow: none !important;
+    /* Removes the focus shadow */
+}
+
+.event_calendar_btn a:hover {
+    text-decoration: none;
+    background-color: transparent !important;
+}
+
+.event_calendar_btn a:focus {
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.event_calendar_btn a::before {
+    content: "«";
+    /* Unicode for << (left angle quotes) */
+    display: inline-block;
+    margin-right: 8px;
+    /* Adjust spacing */
+    font-weight: bold;
+    font-size: 25px;
+}
+
+/* Main Featured Image */
+.header_feature_img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    clip-path: polygon(15% 0, 100% 0, 100% 100%, 15% 100%, 0% 50%);
+    position: relative;
+}
+
+/* Header Title with Arrow Divider */
+.header_title_div {
+    left: 30%;
+    padding: 20px !important;
+    text-align: center;
+    background: #26A594;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    /* Soft shadow effect */
+    position: relative;
+    z-index: 1;
+}
+
+.header_title_div h2 {
+    text-transform: uppercase !important;
+    letter-spacing: 5px !important;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    border-left: 5px solid #fff;
+}
+
+.header_title_div::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -20px;
+    /* Controls arrow size */
+    transform: translateY(-50%);
+    border-left: 20px solid #26A594;
+    /* Same as background color */
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 1024px) {
+    .header_main_title_div {
+        padding-top: 0 !important;
+    }
+
+    .header_title_div {
+        position: relative;
+        padding: 20px !important;
+    }
+
+    .header_title_div h2 {
+        letter-spacing: 2px !important;
+        font-size: 18px;
+    }
+
+    .header_feature_img {
+        height: 250px;
+        /* Reduce banner height */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header_main_title_div {
+        padding-top: 0 !important;
+    }
+
+    .header_title_div {
+        left: 0%;
+        padding: 20px !important;
+    }
+
+    .header_title_div h2 {
+        font-size: 18px;
+    }
+
+    .header_title_div::after {
+        display: none;
+    }
+
+    .header_feature_img {
+        height: 220px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .header_main_title_div {
+        padding-top: 0 !important;
+    }
+
+    .header_title_div h2 {
+        letter-spacing: 2px !important;
+        font-size: 12px;
+    }
+
+    .header_title_div {
         font-size: 16px;
+        padding: 10px;
     }
 
-    .event-date {
-        font-size: 13px;
+    .header_title_div::after {
+        display: none;
     }
 
-    .event-link {
-        padding: 6px 10px;
-        font-size: 14px;
+    .header_feature_img {
+        height: 180px;
+    }
+}
+
+/*event single page */
+.single_event_container {
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+.single_event_detail {
+    padding-top: 5px;
+    color: #26A594;
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.single_event_content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.single_event_right {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 100%;
+}
+
+.event_info {
+    background: #E8E8E8;
+    padding: 10px;
+    border-left: 5px solid #26A594;
+    padding-left: 30px;
+}
+
+/* Event Info Icons */
+.event_info p i {
+    color: #0078D4;
+    /* Blue color */
+    margin-right: 8px;
+    font-size: 20px;
+}
+
+/* Social Media Icons - Inline with Spacing */
+.event_social p {
+    display: flex;
+    gap: 15px;
+    /* Adjust spacing between icons */
+    align-items: center;
+}
+
+/* Hover Effect */
+.event_social p i:hover {
+    color: #000000;
+}
+
+@media screen and (max-width: 768px) {
+    .single_event_content {
+        /*flex-direction: column;*/
+        align-items: center;
     }
 
-
-    /*Mobile Footer*/
-    .footer-search-field {
-        display: none
+    .event_left,
+    .event_right {
+        width: 100%;
     }
+}
+
+/* Medium Devices (Tablets) */
+@media (min-width: 577px) and (max-width: 992px) {
+    .single_event_detail {
+        font-size: 28px;
+        text-align: left;
+    }
+}
+
+/* Base Button Styling */
+.register-btn {
+    background-color: #26A594 !important;
+    /* Blue background */
+    color: white !important;
+    /* White text */
+    font-size: 18px !important;
+    /* Slightly larger text */
+    font-weight: bold !important;
+    border: none !important;
+    border-radius: 0px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    /* Space between text and arrow */
+    cursor: pointer !important;
+    transition: all 0.3s ease-in-out !important;
+    /* Smooth transition */
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Arrow Styling */
+.register-btn .arrow {
+    display: inline-block !important;
+    font-size: 30px !important;
+    transition: transform 0.3s ease-in-out !important;
+    /* Smooth movement */
+}
+
+/* Move Arrow on Hover */
+.register-btn:hover .arrow {
+    transform: translateX(8px) !important;
+    /* Moves arrow slightly to the right */
+}
+
+
+/* Modal Styles */
+.modal-content {
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Modal Header */
+.modal-header {
+    background: #0078D4;
+    color: white;
+    border-radius: 10px 10px 0 0;
+}
+
+/* Form Styling */
+.modal-body {
+    padding: 20px;
+}
+
+form {
+    width: 100%;
+}
+
+form .mb-3 {
+    margin-bottom: 15px;
+}
+
+form label {
+    font-weight: bold;
+    color: #000;
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Checkbox */
+.form-check-label {
+    font-size: 12px;
+    color: #000;
+}
+
+/* Submit Button */
+.btn-success {
+    background-color: #28a745;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    transition: background 0.3s;
+}
+
+.btn-success:hover {
+    background-color: #26A594;
+}
+
+/* Responsive Design */
+
+/* Small Devices (Phones) */
+@media (max-width: 576px) {
+    .modal-dialog {
+        width: 95%;
+        max-width: 400px;
+        /* Prevents modal from stretching too much */
+        margin: 10px auto;
+        /* Centers the modal */
+    }
+
+    .register-btn {
+        font-size: 16px !important;
+        min-width: 120px !important;
+    }
+
+    .register-btn .arrow {
+        font-size: 20px !important;
+    }
+
+    .btn-success {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+}
+
+/* Medium Devices (Tablets) */
+@media (min-width: 577px) and (max-width: 992px) {
+    .modal-dialog {
+        width: 80%;
+        max-width: 600px;
+        /* Limits modal size on tablets */
+        margin: 20px auto;
+    }
+
+    .register-btn {
+        font-size: 17px !important;
+        min-width: 130px !important;
+    }
+
+    .register-btn .arrow {
+        font-size: 22px !important;
+    }
+}
+
+/* Large Devices (Desktops) */
+@media (min-width: 993px) {
+    .modal-dialog {
+        width: 50%;
+        max-width: 700px;
+        /* Ensures modal is not overly wide */
+        margin: 30px auto;
+    }
+
+    .register-btn {
+        font-size: 18px !important;
+        min-width: 150px !important;
+    }
+
+    .register-btn .arrow {
+        font-size: 24px !important;
+    }
+}
+
+
+/* Upcoming Events Section */
+.upcoming_events_section {
+    padding-bottom: 40px;
+    /* Space below */
+}
+
+/* Section Header */
+.upcoming_events_header {
+    color: #26A594 !important;
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Container for event cards */
+.upcoming_events_container {
+    display: flex;
+    gap: 20px;
+    /* Space between event cards */
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Individual Event Card */
+.event_card {
+    width: 40%;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    background: none;
+    text-align: center;
+}
+
+/* Event Thumbnail */
+.event_thumbnail {
+    position: relative;
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Calendar Date Style */
+.event_date {
+    position: absolute;
+    bottom: -10px;
+    right: 10px;
+    background: #26A594;
+    color: #fff;
+    text-align: center;
+    padding: 8px 10px;
+    font-weight: bold;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Event Title */
+.event_details h3 {
+    font-size: 18px;
+    margin: 10px 0 0;
+}
+
+.event_details a {
+    text-decoration: none;
+    color: #0078D4;
+    transition: color 0.3s ease;
+}
+
+.event_details a:hover {
+    text-decoration: underline;
+}
+
+.event_thumbnail_link {
+    display: block;
+    text-decoration: none;
+}
+
+.event_thumbnail_link .event_thumbnail {
+    transition: transform 0.3s ease;
+}
+
+.event_thumbnail_link:hover .event_thumbnail {
+    transform: scale(1.05);
+}
+
+.event_date {
+    display: block;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.event_date:hover {
+    text-decoration: underline;
+}
+
+/* Container for the 'More Events' button */
+.more_events_button_container {
+    text-align: center;
+    /* Center the button */
+}
+
+/* Styling for the 'More Events' button */
+.more_events_button {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 24px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #26A594;
+    border: none;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+/* Styling for the Font Awesome icon */
+.more_events_button .fas {
+    margin-left: 8px;
+    /* Space between text and arrow */
+    transition: transform 0.3s ease;
+}
+
+/* Move arrow slightly to the right on hover */
+.more_events_button:hover .fas {
+    transform: translateX(4px);
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .event_card {
+        width: 100%;
+        /* Full width on smaller screens */
+    }
+}
+
+/* Medium Devices (Tablets) */
+@media (min-width: 577px) and (max-width: 992px) {
+
+    /* Section Header */
+    .upcoming_events_header {
+        font-size: 25px;
+        text-align: left;
+    }
+}
+
+
+/*event calendar page design */
+/* General Styles */
+.tribe-events-calendar-list {
+    padding: 20px !important;
+}
+
+/* Month Separator Styling */
+.tribe-events-calendar-list__month-separator {
+    padding: 10px !important;
+}
+
+/* Event Row Styling */
+.tribe-events-calendar-list__event-row {
+    margin-bottom: 15px !important;
+    padding: 15px !important;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Event Title */
+.tribe-events-calendar-list__event-title a {
+    font-size: 20px !important;
+    color: #0073e6 !important;
+    font-weight: bold !important;
+    text-decoration: none !important;
+}
+
+.tribe-events-calendar-list__event-title a:hover {
+    text-decoration: underline !important;
+}
+
+/* Event Date Styling */
+.tribe-events-calendar-list__event-date-tag-datetime {
+    position: relative;
+    /* Needed for the arrow */
+    display: inline-block;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #26A594;
+    /* Adjust to match your design */
+    height: auto !important;
+}
+
+/* Bottom-right slanted arrow */
+.tribe-events-calendar-list__event-date-tag-datetime::after {
+    content: "";
+    position: absolute;
+    bottom: -9px;
+    /* Moves arrow slightly below */
+    right: 5px;
+    /* Adjust to position the arrow */
+    border-top: 10px solid #26A594;
+    /* Match background color */
+    border-left: 10px solid transparent;
+    transform: rotate(-10deg);
+    /* Slight angle */
+}
+
+
+/* Event Image */
+.tribe-events-calendar-list__event-featured-image {
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1) !important;
+    max-width: 100% !important;
+}
+
+/* Event Description */
+.tribe-events-calendar-list__event-description {
+    font-size: 16px !important;
+    color: #333 !important;
+}
+
+/* Highlight Upcoming Events */
+.tribe-events-calendar-list__event-row:not(.past-event) {
+    background-color: #e8e8e8 !important;
+    /* Light blue */
 }

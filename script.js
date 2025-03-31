@@ -1,7 +1,7 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     // Select all menu items with submenus
     document.querySelectorAll(".wp-block-navigation-item.has-child > a").forEach(item => {
-        item.addEventListener("click", function(e) {
+        item.addEventListener("click", function (e) {
             e.preventDefault(); // Prevent default navigation
             let submenu = this.nextElementSibling;
             if (submenu) {
@@ -12,7 +12,8 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-document.addEventListener("scroll", function() {
+
+document.addEventListener("scroll", function () {
     const header = document.querySelector("header");
     if (window.scrollY > 50) {
         header.classList.add("header-scrolled"); // Smooth expand when scrolling
@@ -20,4 +21,13 @@ document.addEventListener("scroll", function() {
         header.classList.remove("header-scrolled"); // Return to default height
     }
 });
+
+
+// Give siter-footer an ID
+  document.addEventListener("DOMContentLoaded", function () {
+    const footer = document.querySelector(".site-footer");
+    if (footer) {
+      footer.id = "site-footer";
+    }
+  });
 

@@ -18,7 +18,7 @@ add_shortcode('sorted_events', 'display_sorted_events');
 
 class ThemeFunctionsTest extends TestCase {
 
-    // ✅ Test if styles and scripts are enqueued
+    //   Test if styles and scripts are enqueued
     public function test_enqueue_styles() {
         do_action('wp_enqueue_scripts');
         $this->assertTrue(wp_style_is('parent-style', 'enqueued'), 'Parent style should be enqueued');
@@ -26,7 +26,7 @@ class ThemeFunctionsTest extends TestCase {
         $this->assertTrue(wp_script_is('bootstrap-js', 'enqueued'), 'Bootstrap JS should be enqueued');
     }
 
-    // ✅ Test if menus are registered properly
+    //   Test if menus are registered properly
     public function test_menus_registered() {
         do_action('after_setup_theme');
         $menus = get_registered_nav_menus();
@@ -36,7 +36,7 @@ class ThemeFunctionsTest extends TestCase {
         $this->assertArrayHasKey('footer_student_board', $menus, 'Footer Student Board menu should be registered');
     }
 
-    // ✅ Test if WP_Query class exists (ensures WordPress is properly loaded)
+    //   Test if WP_Query class exists (ensures WordPress is properly loaded)
     public function test_wp_query_exists() {
         $this->assertTrue(class_exists('WP_Query'), 'WP_Query class should exist');
     }
