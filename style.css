@@ -34,11 +34,6 @@ Template: twentytwentyfive
     border: none !important;
 }
 
-/* WP Core Elements */
-.wp-block-post-title {
-    /* display: none; */
-}
-
 .wp-block-group {
     flex-wrap: wrap;
 }
@@ -64,7 +59,7 @@ Template: twentytwentyfive
 }
 
 /* Generic Page CSS */
-.main-header {
+.site-header {
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -79,14 +74,18 @@ Template: twentytwentyfive
 }
 
 .header-scrolled {
-    background: #afb0b3;
+    position: sticky;  /* Reapply position */
+    top: 0;
+    z-index: 9999;     /* Match main-header z-index */
+    background: #828385;
     backdrop-filter: blur(10px);
+    opacity: 0.9;
 }
 
 .header-scrolled .header-location,
 .header-scrolled .header-email-address,
 .header-scrolled nav {
-  color: white;
+    color: white;
 }
 
 .header-location-social-links-group {
@@ -112,6 +111,22 @@ h6 {
 /* Responsive Navigation Container */
 .wp-block-navigation__responsive-container {
     background: linear-gradient(180deg, #282725 70%, #868170 100%);
+    display: none !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(180deg, #282725 70%, #868170 100%);
+    z-index: 9999;
+    flex-direction: column;
+    padding-top: 100px;
+    overflow-y: auto;
+}
+
+/* ✅ When WordPress adds this class to open menu */
+.wp-block-navigation__responsive-container.is-menu-open {
+    display: flex !important;
 }
 
 .wp-block-navigation__responsive-container-close {
@@ -120,6 +135,17 @@ h6 {
 
 .wp-block-page-list {
     color: #FFF !important;
+}
+
+.wp-block-navigation__responsive-container {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.wp-block-navigation__responsive-container.is-menu-open {
+    opacity: 1;
+    visibility: visible;
 }
 
 
@@ -264,19 +290,20 @@ h6 {
     font-size: 14px;
     color: #666;
     margin-bottom: 20px;
-    padding-left: var(--wp--style--root--padding-left); /* Match site's global left padding */
-  }
-  
-  .breadcrumbs a {
+    padding-left: var(--wp--style--root--padding-left);
+    /* Match site's global left padding */
+}
+
+.breadcrumbs a {
     color: #0073aa;
     text-decoration: none;
-  }
-  
-  .breadcrumbs a:hover {
+}
+
+.breadcrumbs a:hover {
     text-decoration: underline;
-  }
-  
-  
+}
+
+
 
 /* ================================
    Responsive Adjustments
@@ -335,6 +362,8 @@ h6 {
     .header-social-links a {
         display: inline-block;
     }
+
+
 
     .home-current-student-board-member-heading h4 {
         font-size: 20px !important;
@@ -438,6 +467,12 @@ footer .wp-block-search__button {
 .footer-copyright a:hover {
     text-decoration: underline;
 }
+
+
+/* ================================
+   FINAL FIX: Sticky Header vs Mobile Menu Overlay
+================================ */
+
 
 /* ================================
    Elementor Styling
@@ -621,6 +656,29 @@ footer .wp-block-search__button {
 }
 
 /* ================================
+   Student Resources PAge
+================================== */
+.SR-page-headings {
+    font-family: "Open Sans", Sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: Normal;
+    color: #53565A;
+}
+
+.SR-page-p {
+    font-family: 'Open Sans';
+    font-size: 20px;
+    color: #747779;
+}
+
+.SR-page-list {
+    line-height: 14px;
+    color: #747779;
+    font-family: 'Open Sans';
+    font-size: 16px;
+}
+/* ================================
    Event Single Page Template
 ================================== */
 .wp-block-columns {
@@ -720,6 +778,7 @@ footer .wp-block-search__button {
     .wp-block-post-featured-image {
         height: 250px;
     }
+
 }
 
 @media screen and (max-width: 768px) {
@@ -775,35 +834,75 @@ footer .wp-block-search__button {
 /* ================================
    DW Contributor on About Us Page
 ================================== */
-.menu {
+/*About css begins here*/
+/* side menu for about us*/
+
+
+.about-us-side-menu {
     width: 400px;
-    height: 520px;
+    /* Set a fixed width */
+    height: auto;
+    /* Set a fixed height */
     margin-left: 0;
     margin-right: 0;
     position: absolute;
     z-index: 999;
-    background: #0066CC;
-    padding: 20px 30px;
-    top: -490px;
-    left: 10px;
+    padding: 5px;
+    top: 250px;
+    left: 100px;
     font-size: 24px;
+    /* Smaller text size */
     font-weight: bold;
 }
 
 .menu-item {
     display: flex;
+    
     justify-content: space-between;
+    /* Puts space between text and arrow */
     align-items: center;
+    /* Vertically centers text and arrow */
     padding: 15px 0;
+    /* Adds spacing between items */
     border-bottom: 1px solid #ccc;
+    /* Optional: Adds a separator line */
     text-decoration: none;
 }
 
 .arrow {
     margin-left: 10px;
+    /* Adds some space between text and arrow */
     background: none;
+
+
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+/* about us title h2 */
+.about_title_h2 {
+    color: #FFF;
+    text-align: center;
+    font-family: 'Leckerli One';
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.about_jcubsb {
+    color: #FFF;
+
+    /* h1 */
+    font-family: "Playfair Display";
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: capitalize;
+}
 
 
 /*kw css code */
@@ -1108,15 +1207,15 @@ footer .wp-block-search__button {
     padding: 20px;
 }
 
-form {
+.event-registration-form {
     width: 100%;
 }
 
-form .mb-3 {
+.event-registration-form .mb-3 {
     margin-bottom: 15px;
 }
 
-form label {
+.event-registration-form label {
     font-weight: bold;
     color: #000;
 }

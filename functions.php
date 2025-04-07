@@ -8,6 +8,7 @@ function my_child_theme_enqueue_styles()
 
     // Google Fonts: Open Sans
     wp_enqueue_style('open-sans-font', 'https://fonts.googleapis.com/css2?family=Open+Sans&display=swap', false);
+    wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css?family=Leckerli+One', false);
 
     // Bootstrap CSS & JS
     wp_enqueue_style('bootstrap-css', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css');
@@ -17,6 +18,7 @@ function my_child_theme_enqueue_styles()
     wp_enqueue_script('script-js', get_stylesheet_directory_uri() . '/script.js', array(), false, true);
 }
 add_action('wp_enqueue_scripts', 'my_child_theme_enqueue_styles');
+
 
 
 // Enqueue /assets/js/menu-custom.js JavaScript to Inject Logo & Search in Modal (Display: Navigation Page)
@@ -42,18 +44,6 @@ function my_child_theme_menus()
 }
 add_action('after_setup_theme', 'my_child_theme_menus');
 
-// Enable shortcode for Breadcrumb NavXT
-function jcubsb_breadcrumb_shortcode() {
-    if (function_exists('bcn_display')) {
-        ob_start();
-        echo '<div class="breadcrumbs">';
-        bcn_display();
-        echo '</div>';
-        return ob_get_clean();
-    }
-}
-add_shortcode('bcn_display', 'jcubsb_breadcrumb_shortcode');
-
 
 // Register Footer Menus (Display: Footer section)
 function my_child_theme_footer_menus()
@@ -65,14 +55,14 @@ function my_child_theme_footer_menus()
 }
 add_action('after_setup_theme', 'my_child_theme_footer_menus'); //   FIXED: Now this runs!
 
-// Debug: WP_Query availability (for testing WP_Query is missing ot not!)
-add_action('init', function () {
-    if (class_exists('WP_Query')) {
-        error_log('WP_Query is available!');
-    } else {
-        error_log('WP_Query is missing!');
-    }
-});
+// // Debug: WP_Query availability (for testing WP_Query is missing ot not!)
+// add_action('init', function () {
+//     if (class_exists('WP_Query')) {
+//         error_log('WP_Query is available!');
+//     } else {
+//         error_log('WP_Query is missing!');
+//     }
+// });
 
 
 // Sorting events based on its event date 
@@ -314,7 +304,7 @@ function display_student_registration_form() {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="<?php echo esc_url(home_url($_SERVER['REQUEST_URI'])); ?>">
+                    <form class="event-registration-form" method="POST" action="<?php echo esc_url(home_url($_SERVER['REQUEST_URI'])); ?>">
                         <input type="hidden" name="student_registration_form" value="1">
 
                         <div class="mb-3">
