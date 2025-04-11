@@ -33,6 +33,21 @@ Built using **WordPress** and developed with Agile/XP methodologies across six i
 - Continuous Integration via GitHub Actions  
 - Admin panel configured for non-technical users
 
+## 📂 Folder Structure
+
+```plaintext
+my-child-theme/
+├── assets/                   # Custom assets (images, fonts, etc.)
+├── functions.php             # Theme functions (enqueue scripts, shortcodes)
+├── header.php                # Custom header section
+├── footer.php                # Footer layout and content
+├── style.css                 # Child theme styling
+├── script.js                 # JavaScript for interactivity
+├── tests/                    # PHPUnit test cases
+├── vendor/                   # Composer dependencies
+└── .github/workflows/        # GitHub Actions CI configuration
+```
+
 ## Running Unit Tests
 
 To run PHPUnit tests locally:
