@@ -11,6 +11,15 @@ The website serves as a digital platform for the JCUB Student Board to:
 
 Built using **WordPress** and developed with Agile/XP methodologies across six iterations, the project emphasizes functionality, responsiveness, and user-friendly content management with minor adjustment needed.
 
+## Related Repository
+
+This repository contains only the **custom child theme** developed for the JCUB Student Board Website.
+
+To access the full local WordPress site (including plugins, uploads, and full `/app` structure), visit the main project repository here:
+
+👉 [JCUBSB Local WordPress Site Repository](https://github.com/cbms26/wordpress-project-jcubsb)
+
+
 ## Technologies Used
 
 - **WordPress** (CMS)
