@@ -17,19 +17,15 @@ This repository contains only the **custom child theme** developed for the JCUB 
 
 To access the full local WordPress site (including plugins, uploads, and full `/app` structure), visit the main project repository here:
 
-👉 [JCUBSB Local WordPress Site Repository](https://github.com/cbms26/wordpress-project-jcubsb)
+[JCUBSB Local WordPress Site Repository](https://github.com/cbms26/wordpress-project-jcubsb)
 
-## 🗂️ Database Dump (local.sql)
+## Database Dump (local.sql)
 
 You can download the SQL file directly from this repository:
 
 🔽 [Download local.sql](https://github.com/cbms26/wordpress-project-jcubsb/blob/main/local.sql)
 
-Once downloaded, import it into your local database using:
-
-```bash
-mysql -u root -p bitnami_wordpress < /path/to/local.sql
-```
+Once downloaded, import it into your local database of the site.
 
 ## Technologies Used
 
@@ -53,7 +49,7 @@ mysql -u root -p bitnami_wordpress < /path/to/local.sql
 - Continuous Integration via GitHub Actions  
 - Admin panel configured for non-technical users
 
-## 📂 Folder Structure
+## Folder Structure
 
 ```plaintext
 my-child-theme/
@@ -100,9 +96,12 @@ For demo or internal review access, please contact the development team directly
 - **Karma Wangchuk**  
 - **Kinley Wangdi**
 
-## Live Demo (If applicable)
+## Live Demo
 
-> Not publicly deployed. The final website was hosted on **AWS Lightsail** and used internally at James Cook University Brisbane for academic purposes.
+🔗 [Visit Live Demo](http://13.210.47.125)
+
+> ⚠️ Note: This deployment is hosted temporarily on AWS Lightsail for demonstration and academic purposes. The link may become inactive after the project submission or subject completion period.
+
 
 ## License
 
