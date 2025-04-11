@@ -1,6 +1,6 @@
 # JCUBSB WordPress Child Theme – Project Repository
 
-This repository contains the custom WordPress child theme developed for the **JCUB Student Board Website**, created as part of our Master's ICT Project at James Cook University Brisbane (CP5046 & CP5047).
+This repository contains only the custom WordPress child theme developed for the **JCUB Student Board Website**, created as part of our Master's ICT Project at James Cook University Brisbane (CP5046 & CP5047).
 
 ## Project Overview
 
