@@ -19,6 +19,17 @@ To access the full local WordPress site (including plugins, uploads, and full `/
 
 👉 [JCUBSB Local WordPress Site Repository](https://github.com/cbms26/wordpress-project-jcubsb)
 
+## 🗂️ Database Dump (local.sql)
+
+You can download the SQL file directly from this repository:
+
+🔽 [Download local.sql](https://github.com/cbms26/wordpress-project-jcubsb/blob/main/local.sql)
+
+Once downloaded, import it into your local database using:
+
+```bash
+mysql -u root -p bitnami_wordpress < /path/to/local.sql
+```
 
 ## Technologies Used
 
